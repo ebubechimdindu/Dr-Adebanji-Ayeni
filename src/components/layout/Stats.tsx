@@ -1,30 +1,30 @@
 export function Stats() {
   return (
-    <section className="justify-center items-center border border-[color:var(--Gray-White,#FFF)] bg-[rgba(237,216,255,0.50)] z-10 flex mt-[-106px] gap-3 text-center flex-wrap rounded-md border-solid max-md:max-w-full">
-      <div className="self-stretch flex flex-col w-[200px] my-auto">
-        <div className="text-[#424E60] text-[32px] font-semibold leading-none">
-          15 Y.
+    <section className="container mx-auto px-5 lg:px-20 -mt-20 mb-20 relative z-20">
+      <div className="bg-white/80 backdrop-blur-lg shadow-lg rounded-2xl grid grid-cols-1 md:grid-cols-3 gap-8 p-10">
+        <div className="flex flex-col items-center text-center p-6 hover:transform hover:scale-105 transition-all duration-300">
+          <div className="text-[#A53DFF] text-4xl font-bold mb-2 animate-fade-in">
+            15 Y.
+          </div>
+          <div className="text-[#697484] text-lg animate-fade-in">
+            Experience
+          </div>
         </div>
-        <div className="text-[#697484] text-base font-normal mt-2">
-          Experience
+        <div className="flex flex-col items-center text-center p-6 hover:transform hover:scale-105 transition-all duration-300">
+          <div className="text-[#A53DFF] text-4xl font-bold mb-2 animate-fade-in">
+            250+
+          </div>
+          <div className="text-[#697484] text-lg animate-fade-in">
+            Project Completed
+          </div>
         </div>
-      </div>
-      <div className="bg-white self-stretch w-0 shrink-0 h-[106px] my-auto border-white border-solid border-[3px]" />
-      <div className="self-stretch flex flex-col w-[200px] my-auto">
-        <div className="text-[#424E60] text-[32px] font-semibold leading-none">
-          250+
-        </div>
-        <div className="text-[#697484] text-base font-normal mt-2">
-          Project Completed
-        </div>
-      </div>
-      <div className="bg-white self-stretch w-0 shrink-0 h-[106px] my-auto border-white border-solid border-[3px]" />
-      <div className="self-stretch flex flex-col w-[200px] my-auto">
-        <div className="text-[#424E60] text-[32px] font-semibold leading-none">
-          58
-        </div>
-        <div className="text-[#697484] text-base font-normal mt-2">
-          Happy Client
+        <div className="flex flex-col items-center text-center p-6 hover:transform hover:scale-105 transition-all duration-300">
+          <div className="text-[#A53DFF] text-4xl font-bold mb-2 animate-fade-in">
+            58
+          </div>
+          <div className="text-[#697484] text-lg animate-fade-in">
+            Happy Client
+          </div>
         </div>
       </div>
     </section>
