@@ -1,38 +1,46 @@
 import { Link } from "react-router-dom";
 
 export function Header() {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <header className="justify-between bg-white flex w-full gap-[40px_100px] whitespace-nowrap flex-wrap px-[300px] py-5 max-md:max-w-full max-md:px-5">
+    <header className="fixed top-0 left-0 right-0 z-50 justify-between bg-white/90 backdrop-blur-sm flex w-full gap-5 whitespace-nowrap flex-wrap px-5 py-4 lg:px-20">
       <Link to="/" className="flex items-center gap-3 justify-center">
-        <div className="bg-[#A53DFF] self-stretch overflow-hidden text-2xl text-white font-medium leading-[56px] w-14 h-14 my-auto px-5 rounded-[1000px]">
+        <div className="bg-[#A53DFF] overflow-hidden text-2xl text-white font-medium leading-[56px] w-14 h-14 flex items-center justify-center rounded-[1000px]">
           B
         </div>
-        <div className="text-[#132238] text-[32px] font-semibold leading-none self-stretch my-auto">
+        <div className="text-[#132238] text-[32px] font-semibold leading-none">
           Brooklyn
         </div>
       </Link>
-      <nav className="flex min-w-60 text-base text-[#333] font-medium flex-wrap max-md:max-w-full">
-        <Link to="/" className="self-stretch gap-2.5 px-6 py-3 max-md:px-5">
-          Home
-        </Link>
-        <Link to="/about" className="self-stretch gap-2.5 px-6 py-3 max-md:px-5">
-          About
-        </Link>
-        <Link to="/process" className="self-stretch gap-2.5 px-6 py-3 max-md:px-5">
-          Process
-        </Link>
-        <Link to="/portfolio" className="self-stretch gap-2.5 px-6 py-3 max-md:px-5">
-          Portfolio
-        </Link>
-        <Link to="/blog" className="self-stretch gap-2.5 px-6 py-3 max-md:px-5">
-          Blog
-        </Link>
-        <Link to="/services" className="self-stretch gap-2.5 px-6 py-3 max-md:px-5">
-          Services
-        </Link>
-        <Link to="/contact" className="self-stretch rounded bg-[#A53DFF] gap-3 text-white font-semibold px-6 py-3 max-md:px-5">
+      <nav className="flex items-center justify-end flex-1 min-w-60 text-base text-[#333] font-medium flex-wrap">
+        {[
+          { id: 'home', label: 'Home' },
+          { id: 'about', label: 'About' },
+          { id: 'process', label: 'Process' },
+          { id: 'portfolio', label: 'Portfolio' },
+          { id: 'blog', label: 'Blog' },
+          { id: 'services', label: 'Services' }
+        ].map(({ id, label }) => (
+          <button
+            key={id}
+            onClick={() => scrollToSection(id)}
+            className="px-4 py-2 hover:text-[#A53DFF] transition-colors"
+          >
+            {label}
+          </button>
+        ))}
+        <button
+          onClick={() => scrollToSection('contact')}
+          className="ml-4 rounded bg-[#A53DFF] text-white font-semibold px-6 py-2 hover:bg-[#8431CC] transition-colors"
+        >
           Contact
-        </Link>
+        </button>
       </nav>
     </header>
   );
