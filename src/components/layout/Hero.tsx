@@ -1,4 +1,4 @@
-import { Download, Linkedin, Mail } from "lucide-react";
+import { Download, Linkedin, Mail, Github, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function Hero() {
@@ -90,6 +90,44 @@ export function Hero() {
                 alt="Brooklyn Gilbert"
               />
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer with social links */}
+      <div className="absolute bottom-0 left-0 right-0 z-20 bg-white/30 backdrop-blur-lg border-t border-purple-100/20">
+        <div className="container mx-auto px-4 py-6">
+          <div className="flex justify-center gap-6 items-center opacity-0 animate-[fade-in_0.5s_ease-out_forwards]" style={{ animationDelay: '1.2s' }}>
+            <a 
+              href="https://github.com/brooklyn-gilbert" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-600 hover:text-[#9b87f5] transition-all duration-300 transform hover:scale-110"
+            >
+              <Github className="h-6 w-6" />
+            </a>
+            <a 
+              href="https://linkedin.com/in/brooklyn-gilbert" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-600 hover:text-[#9b87f5] transition-all duration-300 transform hover:scale-110"
+            >
+              <Linkedin className="h-6 w-6" />
+            </a>
+            <a 
+              href="https://twitter.com/brooklyn_gilbert" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-600 hover:text-[#9b87f5] transition-all duration-300 transform hover:scale-110"
+            >
+              <Twitter className="h-6 w-6" />
+            </a>
+            <a 
+              href="mailto:brooklyn.gilbert@example.com"
+              className="text-gray-600 hover:text-[#9b87f5] transition-all duration-300 transform hover:scale-110"
+            >
+              <Mail className="h-6 w-6" />
+            </a>
           </div>
         </div>
       </div>
