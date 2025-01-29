@@ -5,12 +5,12 @@ export function Footer() {
   const socialLinks = [
     {
       icon: Linkedin,
-      href: "https://linkedin.com/in/brooklyn-gilbert",
+      href: "https://www.linkedin.com/in/adebanji-ayeni-4b765643/",
       label: "LinkedIn"
     },
     {
       icon: Mail,
-      href: "mailto:brooklyn.gilbert@example.com",
+      href: "mailto:adebanjiayeni@gmail.com",
       label: "Email"
     }
   ];
@@ -25,7 +25,7 @@ export function Footer() {
                 key={link.label}
                 variant="ghost"
                 size="icon"
-                className="rounded-full hover:bg-[#9b87f5] hover:text-white transition-all duration-300 transform hover:scale-110"
+                className="rounded-full hover:bg-[#7E69AB] hover:text-white transition-all duration-300 transform hover:scale-110"
                 onClick={() => window.open(link.href, '_blank')}
                 aria-label={link.label}
               >
@@ -34,7 +34,7 @@ export function Footer() {
             ))}
           </div>
           <p className="text-sm text-gray-500">
-            © {new Date().getFullYear()} Brooklyn Gilbert. All rights reserved.
+            © {new Date().getFullYear()} Dr. Adebanji Ayeni. All rights reserved.
           </p>
         </div>
       </div>
