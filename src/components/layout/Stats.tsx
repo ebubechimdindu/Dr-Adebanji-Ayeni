@@ -1,6 +1,6 @@
 export function Stats() {
   return (
-    <section className="container mx-auto px-4 sm:px-6 lg:px-20 relative z-10 mt-24 mb-12 sm:mb-16 lg:mb-20">
+    <section className="container mx-auto px-4 sm:px-6 lg:px-20 -mt-12 sm:-mt-16 lg:-mt-20 mb-12 sm:mb-16 lg:mb-20 relative z-20">
       <div className="bg-white/60 backdrop-blur-xl shadow-2xl rounded-[30px] grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 p-8 sm:p-10 lg:p-12 border border-white/20">
         {[
           { value: "15 Y.", label: "Experience" },
