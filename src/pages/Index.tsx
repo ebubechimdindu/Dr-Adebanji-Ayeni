@@ -1,6 +1,7 @@
 import { Header } from "@/components/layout/Header";
 import { Hero } from "@/components/layout/Hero";
 import { Stats } from "@/components/layout/Stats";
+import { Footer } from "@/components/layout/Footer";
 
 const Index = () => {
   return (
@@ -184,8 +185,10 @@ const Index = () => {
           </form>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
-}
+};
 
 export default Index;
