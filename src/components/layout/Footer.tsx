@@ -1,22 +1,12 @@
-import { Github, Linkedin, Twitter, Mail } from "lucide-react";
+import { Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function Footer() {
   const socialLinks = [
     {
-      icon: Github,
-      href: "https://github.com/brooklyn-gilbert",
-      label: "GitHub"
-    },
-    {
       icon: Linkedin,
       href: "https://linkedin.com/in/brooklyn-gilbert",
       label: "LinkedIn"
-    },
-    {
-      icon: Twitter,
-      href: "https://twitter.com/brooklyn_gilbert",
-      label: "Twitter"
     },
     {
       icon: Mail,

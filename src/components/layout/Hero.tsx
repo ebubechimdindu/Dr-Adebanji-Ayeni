@@ -16,10 +16,10 @@ export function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-20 pt-24 pb-12 overflow-hidden bg-gradient-to-b from-white to-purple-50/30">
+    <section className="relative min-h-[80vh] flex items-center justify-center px-4 sm:px-6 lg:px-20 py-12 overflow-hidden bg-gradient-to-b from-white to-purple-50/30">
       <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
-      <div className="container mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-        <div className="z-10 flex flex-col max-w-2xl order-2 lg:order-1">
+      <div className="container mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+        <div className="flex-1 z-10">
           <div className="space-y-8 animate-fade-in">
             <h1 className="text-4xl sm:text-5xl lg:text-7xl leading-[1.2] font-bold text-[#132238] animate-slide-in-right tracking-tight">
               Hello, I'm
@@ -61,7 +61,7 @@ export function Hero() {
             </div>
           </div>
         </div>
-        <div className="relative w-full h-full min-h-[300px] sm:min-h-[400px] lg:min-h-[600px] order-1 lg:order-2">
+        <div className="flex-1 relative w-full min-h-[400px] lg:min-h-[600px]">
           <div className="absolute inset-0 flex items-center justify-center animate-scale-in">
             <div className="relative w-full h-full">
               <div className="absolute -top-20 -right-20 w-72 h-72 bg-[#E5DEFF] rounded-full filter blur-3xl opacity-30 animate-pulse" />
