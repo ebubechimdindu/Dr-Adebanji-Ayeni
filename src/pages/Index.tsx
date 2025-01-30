@@ -21,12 +21,13 @@ const Index = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 animate-slide-in-right">
               <p className="text-base sm:text-lg text-[#697484] leading-relaxed">
-                With 15 years of experience in UI/UX design and development, I've helped numerous clients 
-                bring their digital visions to life. My approach combines aesthetic excellence with 
-                functional design, ensuring every project not only looks beautiful but performs exceptionally.
+                Dr. Ayeni Adebanji Adejuwon William hails from Ekiti State, Nigeria, with B.Sc (Accounting), M.Sc and PhD in Business Administration (Informal Entrepreneurship) from Covenant University, Nigeria. A member of Nigerian Institute of Management, Institute of Debt Recovery Practitioners of Nigeria, and the Academy Of Management Nigeria with over nine years in Academia and currently serving at Wigwe University, Rivers state.
               </p>
-              <p className="text-base sm:text-lg text-[#697484] leading-relaxed">
-                I specialize in creating intuitive and engaging user experiences that drive results.
+              <p className="text-base sm:text-lg text-[#697484] leading-relaxed mt-4">
+                A prolific writer with evidence of Scopus publications in the informal economy, human resource, strategic and educational management, he serves as a reviewer for high-impact journal outlets. Throughout his career, he has supervised both undergraduate and postgraduate students, while mentoring students in the literal and debate club.
+              </p>
+              <p className="text-base sm:text-lg text-[#697484] leading-relaxed mt-4">
+                Currently employed at Wigwe University in the Faculty of Business and Social Sciences while pursuing Post-doctoral Research at North West University, South Africa. His research expertise includes both quantitative and qualitative methods, particularly utilizing PLS-SEM and QSR Nvivo for primary data analysis.
               </p>
             </div>
             <div className="relative h-[400px] animate-scale-in">
