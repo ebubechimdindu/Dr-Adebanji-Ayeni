@@ -41,19 +41,181 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="process" className="min-h-screen bg-[#F8F9FA] px-4 sm:px-6 lg:px-20 py-16 sm:py-20">
+      <section id="skills" className="min-h-screen bg-[#F8F9FA] px-4 sm:px-6 lg:px-20 py-16 sm:py-20">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#132238] mb-8 sm:mb-12 animate-fade-in">My Process</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {['Discovery', 'Design', 'Development', 'Testing', 'Launch', 'Maintenance'].map((step, index) => (
-              <div 
-                key={step} 
-                className="bg-white p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:bg-[#A53DFF] hover:text-white group animate-fade-in"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div className="text-[#A53DFF] group-hover:text-white font-bold mb-2 text-lg sm:text-xl">0{index + 1}</div>
-                <h3 className="text-xl sm:text-2xl font-semibold mb-4">{step}</h3>
-                <p className="text-[#697484] group-hover:text-white/90">Brief description of the {step.toLowerCase()} phase and what it entails.</p>
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#132238] mb-8 sm:mb-12 animate-fade-in">Skill Sets</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                category: "Research Methods",
+                skills: ["Quantitative Research", "Qualitative Research", "Mixed Methods", "PLS-SEM", "QSR Nvivo"]
+              },
+              {
+                category: "Academic Skills",
+                skills: ["Academic Writing", "Research Design", "Data Analysis", "Thesis Supervision", "Curriculum Development"]
+              },
+              {
+                category: "Business Administration",
+                skills: ["Strategic Management", "Entrepreneurship", "Human Resource Management", "Organizational Behavior"]
+              }
+            ].map((skillSet, index) => (
+              <div key={index} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <h3 className="text-xl font-semibold text-[#A53DFF] mb-4">{skillSet.category}</h3>
+                <ul className="space-y-2">
+                  {skillSet.skills.map((skill, skillIndex) => (
+                    <li key={skillIndex} className="flex items-center text-[#697484]">
+                      <span className="w-2 h-2 bg-[#A53DFF] rounded-full mr-2"></span>
+                      {skill}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="education" className="min-h-screen px-4 sm:px-6 lg:px-20 py-16 sm:py-20">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#132238] mb-8 sm:mb-12 animate-fade-in">Education</h2>
+          <div className="space-y-8">
+            {[
+              {
+                degree: "Ph.D. in Business Administration",
+                institution: "Covenant University",
+                year: "2020",
+                focus: "Informal Entrepreneurship"
+              },
+              {
+                degree: "M.Sc. in Business Administration",
+                institution: "Covenant University",
+                year: "2015"
+              },
+              {
+                degree: "B.Sc. in Accounting",
+                institution: "Covenant University",
+                year: "2010"
+              }
+            ].map((edu, index) => (
+              <div key={index} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <h3 className="text-xl font-semibold text-[#A53DFF] mb-2">{edu.degree}</h3>
+                <p className="text-[#697484] mb-1">{edu.institution}</p>
+                <p className="text-[#697484] mb-1">{edu.year}</p>
+                {edu.focus && <p className="text-[#697484] italic">Focus: {edu.focus}</p>}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="positions" className="min-h-screen bg-[#F8F9FA] px-4 sm:px-6 lg:px-20 py-16 sm:py-20">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#132238] mb-8 sm:mb-12 animate-fade-in">Academic Positions</h2>
+          <div className="space-y-8">
+            {[
+              {
+                position: "Faculty Member",
+                institution: "Wigwe University",
+                department: "Faculty of Business and Social Sciences",
+                period: "2023 - Present"
+              },
+              {
+                position: "Post-doctoral Researcher",
+                institution: "North West University",
+                location: "South Africa",
+                period: "2023 - Present"
+              }
+            ].map((position, index) => (
+              <div key={index} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <h3 className="text-xl font-semibold text-[#A53DFF] mb-2">{position.position}</h3>
+                <p className="text-[#697484] mb-1">{position.institution}</p>
+                {position.department && <p className="text-[#697484] mb-1">{position.department}</p>}
+                {position.location && <p className="text-[#697484] mb-1">{position.location}</p>}
+                <p className="text-[#697484] font-medium">{position.period}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="publications" className="min-h-screen px-4 sm:px-6 lg:px-20 py-16 sm:py-20">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#132238] mb-8 sm:mb-12 animate-fade-in">Publications</h2>
+          
+          <div className="mb-12">
+            <h3 className="text-2xl font-semibold text-[#132238] mb-6">Peer-reviewed Journal Papers</h3>
+            <div className="space-y-6">
+              {[
+                {
+                  title: "Sample Publication Title 1",
+                  authors: "Ayeni, A. A. W., et al.",
+                  journal: "Journal of Business Administration",
+                  year: "2023",
+                  doi: "10.1234/jba.2023.001"
+                },
+                {
+                  title: "Sample Publication Title 2",
+                  authors: "Ayeni, A. A. W., et al.",
+                  journal: "International Journal of Management",
+                  year: "2022",
+                  doi: "10.1234/ijm.2022.001"
+                }
+              ].map((paper, index) => (
+                <div key={index} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                  <h4 className="text-lg font-semibold text-[#A53DFF] mb-2">{paper.title}</h4>
+                  <p className="text-[#697484] mb-1">{paper.authors}</p>
+                  <p className="text-[#697484] mb-1">{paper.journal}, {paper.year}</p>
+                  <p className="text-[#697484]">DOI: {paper.doi}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mb-12">
+            <h3 className="text-2xl font-semibold text-[#132238] mb-6">Publications Under Review</h3>
+            <div className="space-y-6">
+              {[
+                {
+                  title: "Sample Under Review Title 1",
+                  authors: "Ayeni, A. A. W., et al.",
+                  journal: "Journal of Management Studies",
+                  submissionDate: "2024"
+                }
+              ].map((paper, index) => (
+                <div key={index} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                  <h4 className="text-lg font-semibold text-[#A53DFF] mb-2">{paper.title}</h4>
+                  <p className="text-[#697484] mb-1">{paper.authors}</p>
+                  <p className="text-[#697484]">Submitted to {paper.journal}, {paper.submissionDate}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="awards" className="min-h-screen bg-[#F8F9FA] px-4 sm:px-6 lg:px-20 py-16 sm:py-20">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#132238] mb-8 sm:mb-12 animate-fade-in">Awards & Honors</h2>
+          <div className="space-y-6">
+            {[
+              {
+                title: "Sample Award 1",
+                organization: "Sample Organization",
+                year: "2023",
+                description: "Brief description of the award and its significance."
+              },
+              {
+                title: "Sample Honor 1",
+                organization: "Sample Institution",
+                year: "2022",
+                description: "Brief description of the honor and its significance."
+              }
+            ].map((award, index) => (
+              <div key={index} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <h3 className="text-xl font-semibold text-[#A53DFF] mb-2">{award.title}</h3>
+                <p className="text-[#697484] mb-1">{award.organization}</p>
+                <p className="text-[#697484] mb-2">{award.year}</p>
+                <p className="text-[#697484]">{award.description}</p>
               </div>
             ))}
           </div>
@@ -61,75 +223,7 @@ const Index = () => {
       </section>
 
       <PortfolioSection />
-      
       <BlogSection />
-
-      <section id="services" className="min-h-screen px-4 sm:px-6 lg:px-20 py-16 sm:py-20">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#132238] mb-8 sm:mb-12 animate-fade-in">Services</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {[
-              'UI/UX Design',
-              'Web Development',
-              'Mobile Apps',
-              'Brand Identity',
-              'Digital Marketing',
-              'Consultation'
-            ].map((service, index) => (
-              <div 
-                key={service} 
-                className="p-6 sm:p-8 rounded-xl border-2 border-[#E2E8F0] hover:border-[#A53DFF] transition-all duration-500 shadow-lg hover:shadow-xl group animate-fade-in"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div className="mb-6 transform transition-transform duration-500 group-hover:scale-110">
-                  <div className="w-16 h-16 bg-[#A53DFF]/10 rounded-full flex items-center justify-center">
-                    <span className="text-2xl text-[#A53DFF]">0{index + 1}</span>
-                  </div>
-                </div>
-                <h3 className="text-xl sm:text-2xl font-semibold mb-4 group-hover:text-[#A53DFF] transition-colors">{service}</h3>
-                <p className="text-[#697484]">Comprehensive {service.toLowerCase()} services tailored to your needs.</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" className="min-h-screen bg-[#F8F9FA] px-4 sm:px-6 lg:px-20 py-16 sm:py-20">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#132238] mb-8 sm:mb-12 animate-fade-in">Contact Me</h2>
-          <form className="space-y-6 animate-fade-in">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <input
-                type="text"
-                placeholder="Name"
-                className="w-full px-4 py-3 rounded-lg border border-[#E2E8F0] focus:border-[#A53DFF] focus:ring-2 focus:ring-[#A53DFF]/20 focus:outline-none transition-all duration-300 hover:border-[#A53DFF]"
-              />
-              <input
-                type="email"
-                placeholder="Email"
-                className="w-full px-4 py-3 rounded-lg border border-[#E2E8F0] focus:border-[#A53DFF] focus:ring-2 focus:ring-[#A53DFF]/20 focus:outline-none transition-all duration-300 hover:border-[#A53DFF]"
-              />
-            </div>
-            <input
-              type="text"
-              placeholder="Subject"
-              className="w-full px-4 py-3 rounded-lg border border-[#E2E8F0] focus:border-[#A53DFF] focus:ring-2 focus:ring-[#A53DFF]/20 focus:outline-none transition-all duration-300 hover:border-[#A53DFF]"
-            />
-            <textarea
-              placeholder="Message"
-              rows={6}
-              className="w-full px-4 py-3 rounded-lg border border-[#E2E8F0] focus:border-[#A53DFF] focus:ring-2 focus:ring-[#A53DFF]/20 focus:outline-none transition-all duration-300 hover:border-[#A53DFF] resize-none"
-            ></textarea>
-            <button
-              type="submit"
-              className="w-full bg-[#A53DFF] text-white font-semibold py-3 rounded-lg hover:bg-[#8431CC] transition-all duration-300 transform hover:scale-105 shadow-lg"
-            >
-              Send Message
-            </button>
-          </form>
-        </div>
-      </section>
-
       <Footer />
     </div>
   );
