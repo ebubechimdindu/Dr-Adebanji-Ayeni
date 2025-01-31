@@ -1,32 +1,97 @@
+import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
+import { supabase } from "@/integrations/supabase/client";
+import { ChevronDown, ChevronUp } from "lucide-react";
+
 export function AcademicPositionsSection() {
+  const [showAll, setShowAll] = useState(false);
+
+  const { data: positions, isLoading } = useQuery({
+    queryKey: ['academic_positions'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('academic_positions')
+        .select('*')
+        .order('start_date', { ascending: false });
+      
+      if (error) throw error;
+      return data;
+    },
+  });
+
+  const displayedPositions = showAll ? positions : positions?.slice(0, 3);
+
+  if (isLoading) {
+    return (
+      <section id="positions" className="min-h-screen bg-[#F8F9FA] px-4 sm:px-6 lg:px-20 py-16 sm:py-20">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#132238] mb-8 sm:mb-12">Academic Positions</h2>
+          <div className="space-y-8">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="bg-white p-6 rounded-xl shadow-lg">
+                <Skeleton className="h-6 w-48 mb-2" />
+                <Skeleton className="h-4 w-32 mb-1" />
+                <Skeleton className="h-4 w-40 mb-1" />
+                <Skeleton className="h-4 w-24" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="positions" className="min-h-screen bg-[#F8F9FA] px-4 sm:px-6 lg:px-20 py-16 sm:py-20">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-3xl sm:text-4xl font-bold text-[#132238] mb-8 sm:mb-12 animate-fade-in">Academic Positions</h2>
         <div className="space-y-8">
-          {[
-            {
-              position: "Faculty Member",
-              institution: "Wigwe University",
-              department: "Faculty of Business and Social Sciences",
-              period: "2023 - Present"
-            },
-            {
-              position: "Post-doctoral Researcher",
-              institution: "North West University",
-              location: "South Africa",
-              period: "2023 - Present"
-            }
-          ].map((position, index) => (
-            <div key={index} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
-              <h3 className="text-xl font-semibold text-[#A53DFF] mb-2">{position.position}</h3>
+          {displayedPositions?.map((position) => (
+            <div key={position.id} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+              <h3 className="text-xl font-semibold text-[#A53DFF] mb-2">{position.title}</h3>
               <p className="text-[#697484] mb-1">{position.institution}</p>
-              {position.department && <p className="text-[#697484] mb-1">{position.department}</p>}
-              {position.location && <p className="text-[#697484] mb-1">{position.location}</p>}
-              <p className="text-[#697484] font-medium">{position.period}</p>
+              <p className="text-[#697484] mb-2">
+                {new Date(position.start_date).getFullYear()} - {position.is_current ? 'Present' : new Date(position.end_date as string).getFullYear()}
+              </p>
+              {position.research_areas && position.research_areas.length > 0 && (
+                <div className="mt-2">
+                  <p className="text-sm font-medium text-[#697484]">Research Areas:</p>
+                  <div className="flex flex-wrap gap-2 mt-1">
+                    {position.research_areas.map((area, index) => (
+                      <span
+                        key={index}
+                        className="px-2 py-1 text-sm bg-[#F8F9FA] text-[#697484] rounded-full"
+                      >
+                        {area}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           ))}
         </div>
+        {positions && positions.length > 3 && (
+          <div className="flex justify-center mt-8">
+            <Button
+              variant="outline"
+              onClick={() => setShowAll(!showAll)}
+              className="flex items-center gap-2"
+            >
+              {showAll ? (
+                <>
+                  Show Less <ChevronUp className="h-4 w-4" />
+                </>
+              ) : (
+                <>
+                  View All Positions <ChevronDown className="h-4 w-4" />
+                </>
+              )}
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   );
