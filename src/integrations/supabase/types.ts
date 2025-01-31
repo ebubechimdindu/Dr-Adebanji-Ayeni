@@ -42,6 +42,36 @@ export type Database = {
         }
         Relationships: []
       }
+      awards: {
+        Row: {
+          category: string | null
+          created_at: string | null
+          description: string | null
+          id: string
+          organization: string
+          title: string
+          year: number
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          organization: string
+          title: string
+          year: number
+        }
+        Update: {
+          category?: string | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          organization?: string
+          title?: string
+          year?: number
+        }
+        Relationships: []
+      }
       education: {
         Row: {
           co_advisor: string | null
@@ -99,6 +129,48 @@ export type Database = {
           created_at?: string | null
           id?: string
           name?: string
+        }
+        Relationships: []
+      }
+      work_experience: {
+        Row: {
+          achievements: string[] | null
+          created_at: string | null
+          description: string | null
+          end_date: string | null
+          id: string
+          is_current: boolean | null
+          organization: string
+          responsibilities: string[] | null
+          start_date: string
+          title: string
+          type: string
+        }
+        Insert: {
+          achievements?: string[] | null
+          created_at?: string | null
+          description?: string | null
+          end_date?: string | null
+          id?: string
+          is_current?: boolean | null
+          organization: string
+          responsibilities?: string[] | null
+          start_date: string
+          title: string
+          type: string
+        }
+        Update: {
+          achievements?: string[] | null
+          created_at?: string | null
+          description?: string | null
+          end_date?: string | null
+          id?: string
+          is_current?: boolean | null
+          organization?: string
+          responsibilities?: string[] | null
+          start_date?: string
+          title?: string
+          type?: string
         }
         Relationships: []
       }
