@@ -9,7 +9,99 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      academic_positions: {
+        Row: {
+          created_at: string | null
+          end_date: string | null
+          id: string
+          institution: string
+          is_current: boolean | null
+          research_areas: string[] | null
+          start_date: string
+          title: string
+        }
+        Insert: {
+          created_at?: string | null
+          end_date?: string | null
+          id?: string
+          institution: string
+          is_current?: boolean | null
+          research_areas?: string[] | null
+          start_date: string
+          title: string
+        }
+        Update: {
+          created_at?: string | null
+          end_date?: string | null
+          id?: string
+          institution?: string
+          is_current?: boolean | null
+          research_areas?: string[] | null
+          start_date?: string
+          title?: string
+        }
+        Relationships: []
+      }
+      education: {
+        Row: {
+          co_advisor: string | null
+          created_at: string | null
+          degree: string
+          dissertation_title: string | null
+          end_year: number
+          field: string
+          id: string
+          institution: string
+          principal_advisor: string | null
+          start_year: number
+        }
+        Insert: {
+          co_advisor?: string | null
+          created_at?: string | null
+          degree: string
+          dissertation_title?: string | null
+          end_year: number
+          field: string
+          id?: string
+          institution: string
+          principal_advisor?: string | null
+          start_year: number
+        }
+        Update: {
+          co_advisor?: string | null
+          created_at?: string | null
+          degree?: string
+          dissertation_title?: string | null
+          end_year?: number
+          field?: string
+          id?: string
+          institution?: string
+          principal_advisor?: string | null
+          start_year?: number
+        }
+        Relationships: []
+      }
+      skills: {
+        Row: {
+          category: string
+          created_at: string | null
+          id: string
+          name: string
+        }
+        Insert: {
+          category: string
+          created_at?: string | null
+          id?: string
+          name: string
+        }
+        Update: {
+          category?: string
+          created_at?: string | null
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
