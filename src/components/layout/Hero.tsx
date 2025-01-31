@@ -1,5 +1,12 @@
 import { Mail, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 export function Hero() {
   const handleEmailClick = () => {
@@ -9,6 +16,13 @@ export function Hero() {
   const handleLinkedInClick = () => {
     window.open("https://www.linkedin.com/in/adebanji-ayeni-4b765643/", '_blank');
   };
+
+  const images = [
+    "/lovable-uploads/63ec6cff-4fb4-434a-b383-b80f4b17651f.png",
+    "/lovable-uploads/d34350b6-7d57-48b1-9b2f-0d9c737fe9f3.png",
+    "/lovable-uploads/9afd0c1c-6e0d-4000-81d2-66eff9c60d01.png",
+    "/lovable-uploads/ec5cff29-6099-473c-bf8d-600089dcaee0.png"
+  ];
 
   return (
     <section className="relative min-h-[80vh] flex items-center justify-center px-4 sm:px-6 lg:px-20 py-12 overflow-hidden bg-gradient-to-b from-white to-gray-50/30">
@@ -53,12 +67,21 @@ export function Hero() {
             <div className="relative w-full h-full">
               <div className="absolute -top-20 -right-20 w-72 h-72 bg-[#E5DEFF] rounded-full filter blur-3xl opacity-30 animate-pulse" />
               <div className="absolute -bottom-20 -left-20 w-72 h-72 bg-[#D6BCFA] rounded-full filter blur-3xl opacity-30 animate-pulse" />
-              <img
-                loading="lazy"
-                src="/placeholder.svg"
-                className="w-full h-full object-contain rounded-[30px] transition-all duration-500 hover:scale-105 shadow-2xl relative z-10"
-                alt="Dr. Adebanji Ayeni"
-              />
+              <Carousel className="w-full max-w-lg mx-auto">
+                <CarouselContent>
+                  {images.map((image, index) => (
+                    <CarouselItem key={index}>
+                      <img
+                        src={image}
+                        alt={`Dr. Adebanji Ayeni - Image ${index + 1}`}
+                        className="w-full h-[500px] object-cover rounded-[30px] transition-all duration-500 hover:scale-105 shadow-2xl relative z-10"
+                      />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="hidden sm:flex" />
+                <CarouselNext className="hidden sm:flex" />
+              </Carousel>
             </div>
           </div>
         </div>
