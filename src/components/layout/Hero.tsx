@@ -1,5 +1,11 @@
-import { Mail, Linkedin } from "lucide-react";
+import { Mail, Linkedin, ExternalLink, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import {
   Carousel,
   CarouselContent,
@@ -15,6 +21,16 @@ export function Hero() {
 
   const handleLinkedInClick = () => {
     window.open("https://www.linkedin.com/in/adebanji-ayeni-4b765643/", '_blank');
+  };
+
+  const handleViewCV = () => {
+    // Placeholder - Replace with actual CV URL
+    window.open("#", '_blank');
+  };
+
+  const handleDownloadCV = () => {
+    // Placeholder - Replace with actual CV download URL
+    window.open("#", '_blank');
   };
 
   const images = [
@@ -33,7 +49,9 @@ export function Hero() {
             <h1 className="text-4xl sm:text-5xl lg:text-7xl leading-[1.2] font-bold text-[#132238] animate-slide-in-right tracking-tight">
               Dr.
               <br />
-              <span className="text-[#7E69AB] inline-block mt-2 animate-scale-in bg-clip-text text-transparent bg-gradient-to-r from-[#7E69AB] to-[#6E59A5]">Adebanji Ayeni</span>
+              <span className="text-[#7E69AB] inline-block mt-2 animate-scale-in bg-clip-text text-transparent bg-gradient-to-r from-[#7E69AB] to-[#6E59A5]">
+                Adebanji Ayeni
+              </span>
             </h1>
             <p className="text-base sm:text-lg text-[#697484] leading-relaxed animate-fade-in">
               I'm a <span className="text-[#132238] font-semibold">Post Doctoral Fellow</span> at North-West University and{" "}
@@ -41,22 +59,57 @@ export function Hero() {
               My research focuses on informal entrepreneurship, business administration, and ICT in education.
             </p>
             <div className="flex flex-wrap gap-6 animate-fade-in">
-              <div className="flex gap-4">
+              <div className="flex flex-wrap gap-4">
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        onClick={handleLinkedInClick}
+                        className="rounded-full hover:bg-[#7E69AB] hover:text-white transition-all duration-500 transform hover:scale-105 h-14 w-14 shadow-md border-2"
+                      >
+                        <Linkedin className="h-5 w-5" />
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Connect on LinkedIn</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        onClick={handleEmailClick}
+                        className="rounded-full hover:bg-[#7E69AB] hover:text-white transition-all duration-500 transform hover:scale-105 h-14 w-14 shadow-md border-2"
+                      >
+                        <Mail className="h-5 w-5" />
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Send Email</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </div>
+
+              <div className="flex flex-wrap gap-4 w-full sm:w-auto">
                 <Button
-                  variant="outline"
-                  size="icon"
-                  onClick={handleLinkedInClick}
-                  className="rounded-full hover:bg-[#7E69AB] hover:text-white transition-all duration-500 transform hover:scale-105 h-14 w-14 shadow-md border-2"
+                  onClick={handleViewCV}
+                  className="flex-1 sm:flex-none bg-gradient-to-r from-[#9b87f5] to-[#7E69AB] text-white hover:from-[#8b77e5] hover:to-[#6E59A5] transition-all duration-300 transform hover:scale-105"
                 >
-                  <Linkedin className="h-5 w-5" />
+                  <ExternalLink className="mr-2 h-4 w-4" /> View CV
                 </Button>
                 <Button
+                  onClick={handleDownloadCV}
                   variant="outline"
-                  size="icon"
-                  onClick={handleEmailClick}
-                  className="rounded-full hover:bg-[#7E69AB] hover:text-white transition-all duration-500 transform hover:scale-105 h-14 w-14 shadow-md border-2"
+                  className="flex-1 sm:flex-none border-2 hover:bg-[#7E69AB] hover:text-white transition-all duration-300 transform hover:scale-105"
                 >
-                  <Mail className="h-5 w-5" />
+                  <Download className="mr-2 h-4 w-4" /> Download CV
                 </Button>
               </div>
             </div>
@@ -71,16 +124,19 @@ export function Hero() {
                 <CarouselContent>
                   {images.map((image, index) => (
                     <CarouselItem key={index}>
-                      <img
-                        src={image}
-                        alt={`Dr. Adebanji Ayeni - Image ${index + 1}`}
-                        className="w-full h-[500px] object-cover rounded-[30px] transition-all duration-500 hover:scale-105 shadow-2xl relative z-10"
-                      />
+                      <div className="relative aspect-[3/4] w-full">
+                        <img
+                          src={image}
+                          alt={`Dr. Adebanji Ayeni - Image ${index + 1}`}
+                          className="w-full h-full object-cover rounded-[30px] transition-all duration-500 hover:scale-105 shadow-2xl relative z-10"
+                          loading="lazy"
+                        />
+                      </div>
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <CarouselPrevious className="hidden sm:flex" />
-                <CarouselNext className="hidden sm:flex" />
+                <CarouselPrevious className="hidden sm:flex -left-12 h-12 w-12" />
+                <CarouselNext className="hidden sm:flex -right-12 h-12 w-12" />
               </Carousel>
             </div>
           </div>
