@@ -8,6 +8,7 @@ export default defineConfig({
   title: 'Academic Portfolio',
   projectId: '9uqjt3zf',
   dataset: 'production',
+  basePath: '/studio',
   plugins: [deskTool(), visionTool()],
   schema: {
     types: schemaTypes,

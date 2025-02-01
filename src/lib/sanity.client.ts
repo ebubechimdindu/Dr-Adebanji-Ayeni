@@ -8,9 +8,23 @@ export const client = createClient({
 })
 
 export const getProfile = async () => {
-  return client.fetch(`*[_type == "profile"][0]`)
+  try {
+    const profile = await client.fetch(`*[_type == "profile"][0]`)
+    return profile
+  } catch (error) {
+    console.log('Error fetching profile:', error)
+    // Return null to allow fallback to static data
+    return null
+  }
 }
 
 export const getCV = async () => {
-  return client.fetch(`*[_type == "cv"][0]`)
+  try {
+    const cv = await client.fetch(`*[_type == "cv"][0]`)
+    return cv
+  } catch (error) {
+    console.log('Error fetching CV:', error)
+    // Return null to allow fallback to static data
+    return null
+  }
 }
