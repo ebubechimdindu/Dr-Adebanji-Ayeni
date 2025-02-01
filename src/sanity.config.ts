@@ -13,4 +13,8 @@ export default defineConfig({
   schema: {
     types: schemaTypes,
   },
+  cors: {
+    origin: ['http://localhost:5173', 'https://a9960a07-d6b7-4f7c-afb6-4029de7720be.lovableproject.com'],
+    credentials: true,
+  }
 })
