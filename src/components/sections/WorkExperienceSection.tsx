@@ -1,16 +1,23 @@
 import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
+import { client } from "@/lib/sanity.client";
 
 export function WorkExperienceSection() {
   const { data: experiences, isLoading } = useQuery({
     queryKey: ['work-experience'],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from('work_experience')
-        .select('*')
-        .order('start_date', { ascending: false });
-      
-      if (error) throw error;
+      const data = await client.fetch(`
+        *[_type == "workExperience"] | order(startDate desc) {
+          _id,
+          title,
+          organization,
+          startDate,
+          endDate,
+          isCurrent,
+          description,
+          responsibilities,
+          achievements
+        }
+      `);
       return data;
     }
   });
@@ -45,12 +52,12 @@ export function WorkExperienceSection() {
         <h2 className="text-3xl sm:text-4xl font-bold text-[#132238] mb-8 sm:mb-12 animate-fade-in">Work Experience</h2>
         <div className="space-y-8">
           {experiences?.map((exp) => (
-            <div key={exp.id} className="bg-[#F8F9FA] p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+            <div key={exp._id} className="bg-[#F8F9FA] p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
               <h3 className="text-xl font-semibold text-[#7E69AB] mb-2">{exp.title}</h3>
               <p className="text-[#697484] font-medium mb-1">{exp.organization}</p>
               <p className="text-[#697484] mb-4">
-                {new Date(exp.start_date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })} - 
-                {exp.is_current ? ' Present' : exp.end_date ? ` ${new Date(exp.end_date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}` : ''}
+                {new Date(exp.startDate).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })} - 
+                {exp.isCurrent ? ' Present' : exp.endDate ? ` ${new Date(exp.endDate).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}` : ''}
               </p>
               {exp.description && <p className="text-[#697484] mb-4">{exp.description}</p>}
               {exp.responsibilities && exp.responsibilities.length > 0 && (
