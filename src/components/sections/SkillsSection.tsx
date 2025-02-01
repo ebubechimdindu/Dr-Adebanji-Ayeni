@@ -1,9 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { supabase } from "@/integrations/supabase/client";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { client } from "@/lib/sanity.client";
 
 export function SkillsSection() {
   const [showAll, setShowAll] = useState(false);
@@ -11,13 +11,13 @@ export function SkillsSection() {
   const { data: skills, isLoading } = useQuery({
     queryKey: ['skills'],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from('skills')
-        .select('*')
-        .order('category');
-      
-      if (error) throw error;
-      return data;
+      return client.fetch(`
+        *[_type == "skill"] | order(category) {
+          _id,
+          category,
+          name
+        }
+      `);
     },
   });
 

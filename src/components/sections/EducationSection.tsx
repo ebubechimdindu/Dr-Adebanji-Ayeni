@@ -1,9 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { supabase } from "@/integrations/supabase/client";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { client } from "@/lib/sanity.client";
 
 export function EducationSection() {
   const [showAll, setShowAll] = useState(false);
@@ -11,13 +11,19 @@ export function EducationSection() {
   const { data: education, isLoading } = useQuery({
     queryKey: ['education'],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from('education')
-        .select('*')
-        .order('end_year', { ascending: false });
-      
-      if (error) throw error;
-      return data;
+      return client.fetch(`
+        *[_type == "education"] | order(endYear desc) {
+          _id,
+          degree,
+          institution,
+          field,
+          startYear,
+          endYear,
+          dissertationTitle,
+          principalAdvisor,
+          coAdvisor
+        }
+      `);
     },
   });
 
@@ -49,22 +55,22 @@ export function EducationSection() {
         <h2 className="text-3xl sm:text-4xl font-bold text-[#132238] mb-8 sm:mb-12 animate-fade-in">Education</h2>
         <div className="space-y-8">
           {displayedEducation?.map((edu) => (
-            <div key={edu.id} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+            <div key={edu._id} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
               <h3 className="text-xl font-semibold text-[#A53DFF] mb-2">{edu.degree}</h3>
               <p className="text-[#697484] mb-1">{edu.institution}</p>
               <p className="text-[#697484] mb-1">{edu.field}</p>
-              <p className="text-[#697484] mb-1">{`${edu.start_year} - ${edu.end_year}`}</p>
-              {edu.dissertation_title && (
+              <p className="text-[#697484] mb-1">{`${edu.startYear} - ${edu.endYear}`}</p>
+              {edu.dissertationTitle && (
                 <p className="text-[#697484] italic mt-2">
-                  Dissertation: {edu.dissertation_title}
+                  Dissertation: {edu.dissertationTitle}
                 </p>
               )}
-              {(edu.principal_advisor || edu.co_advisor) && (
+              {(edu.principalAdvisor || edu.coAdvisor) && (
                 <div className="mt-2 text-sm text-[#697484]">
-                  {edu.principal_advisor && (
-                    <p>Principal Advisor: {edu.principal_advisor}</p>
+                  {edu.principalAdvisor && (
+                    <p>Principal Advisor: {edu.principalAdvisor}</p>
                   )}
-                  {edu.co_advisor && <p>Co-Advisor: {edu.co_advisor}</p>}
+                  {edu.coAdvisor && <p>Co-Advisor: {edu.coAdvisor}</p>}
                 </div>
               )}
             </div>

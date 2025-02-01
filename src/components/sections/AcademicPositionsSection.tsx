@@ -1,9 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { supabase } from "@/integrations/supabase/client";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { client } from "@/lib/sanity.client";
 
 export function AcademicPositionsSection() {
   const [showAll, setShowAll] = useState(false);
@@ -11,13 +11,17 @@ export function AcademicPositionsSection() {
   const { data: positions, isLoading } = useQuery({
     queryKey: ['academic_positions'],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from('academic_positions')
-        .select('*')
-        .order('start_date', { ascending: false });
-      
-      if (error) throw error;
-      return data;
+      return client.fetch(`
+        *[_type == "academicPosition"] | order(startDate desc) {
+          _id,
+          title,
+          institution,
+          startDate,
+          endDate,
+          isCurrent,
+          researchAreas
+        }
+      `);
     },
   });
 
@@ -49,17 +53,17 @@ export function AcademicPositionsSection() {
         <h2 className="text-3xl sm:text-4xl font-bold text-[#132238] mb-8 sm:mb-12 animate-fade-in">Academic Positions</h2>
         <div className="space-y-8">
           {displayedPositions?.map((position) => (
-            <div key={position.id} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+            <div key={position._id} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
               <h3 className="text-xl font-semibold text-[#A53DFF] mb-2">{position.title}</h3>
               <p className="text-[#697484] mb-1">{position.institution}</p>
               <p className="text-[#697484] mb-2">
-                {new Date(position.start_date).getFullYear()} - {position.is_current ? 'Present' : new Date(position.end_date as string).getFullYear()}
+                {new Date(position.startDate).getFullYear()} - {position.isCurrent ? 'Present' : new Date(position.endDate).getFullYear()}
               </p>
-              {position.research_areas && position.research_areas.length > 0 && (
+              {position.researchAreas && position.researchAreas.length > 0 && (
                 <div className="mt-2">
                   <p className="text-sm font-medium text-[#697484]">Research Areas:</p>
                   <div className="flex flex-wrap gap-2 mt-1">
-                    {position.research_areas.map((area, index) => (
+                    {position.researchAreas.map((area: string, index: number) => (
                       <span
                         key={index}
                         className="px-2 py-1 text-sm bg-[#F8F9FA] text-[#697484] rounded-full"

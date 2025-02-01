@@ -1,17 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
+import { client } from "@/lib/sanity.client";
 
 export function AwardsSection() {
   const { data: awards, isLoading } = useQuery({
     queryKey: ['awards'],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from('awards')
-        .select('*')
-        .order('year', { ascending: false });
-      
-      if (error) throw error;
-      return data;
+      return client.fetch(`
+        *[_type == "award"] | order(year desc) {
+          _id,
+          title,
+          organization,
+          year,
+          category,
+          description
+        }
+      `);
     }
   });
 
@@ -40,7 +43,7 @@ export function AwardsSection() {
         <h2 className="text-3xl sm:text-4xl font-bold text-[#132238] mb-8 sm:mb-12 animate-fade-in">Awards & Honors</h2>
         <div className="space-y-6">
           {awards?.map((award) => (
-            <div key={award.id} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+            <div key={award._id} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
               <h3 className="text-xl font-semibold text-[#7E69AB] mb-2">{award.title}</h3>
               <p className="text-[#697484] mb-1">{award.organization}</p>
               <p className="text-[#697484] mb-2">{award.year}</p>
