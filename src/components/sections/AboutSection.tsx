@@ -15,10 +15,10 @@ export function AboutSection() {
               Currently employed at Wigwe University in the Faculty of Business and Social Sciences while pursuing Post-doctoral Research at North West University, South Africa. His research expertise includes both quantitative and qualitative methods, particularly utilizing PLS-SEM and QSR Nvivo for primary data analysis.
             </p>
           </div>
-          <div className="relative h-[400px] animate-scale-in">
+          <div className="relative h-[500px] w-full animate-scale-in">
             <img
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/f5b7607dc7e7dd76883247c2efe66e31ad764b678493a79a036b44c106ea4f81"
-              alt="About Me"
+              src="/lovable-uploads/63ec6cff-4fb4-434a-b383-b80f4b17651f.png"
+              alt="Dr. Adebanji Ayeni"
               className="absolute inset-0 w-full h-full object-cover rounded-2xl shadow-xl hover:scale-105 transition-transform duration-300"
             />
           </div>
