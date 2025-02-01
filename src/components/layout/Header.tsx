@@ -16,10 +16,13 @@ export function Header() {
     const sections = [
       { id: 'home', label: 'Home' },
       { id: 'about', label: 'About' },
-      { id: 'process', label: 'Process' },
-      { id: 'portfolio', label: 'Portfolio' },
-      { id: 'blog', label: 'Blog' },
-      { id: 'services', label: 'Services' }
+      { id: 'skills', label: 'Skills' },
+      { id: 'education', label: 'Education' },
+      { id: 'positions', label: 'Academic Positions' },
+      { id: 'research', label: 'Research Projects' },
+      { id: 'publications', label: 'Publications' },
+      { id: 'awards', label: 'Awards' },
+      { id: 'blog', label: 'Blog' }
     ];
 
     const isActive = (id: string) => {
