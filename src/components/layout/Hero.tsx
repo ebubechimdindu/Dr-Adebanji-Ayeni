@@ -1,5 +1,7 @@
 import { Mail, Linkedin, ExternalLink, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useQuery } from "@tanstack/react-query";
+import { client } from "@/lib/sanity.client";
 import {
   Tooltip,
   TooltipContent,
@@ -13,8 +15,23 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { toast } from "sonner";
 
 export function Hero() {
+  const { data: cvData } = useQuery({
+    queryKey: ['cv'],
+    queryFn: async () => {
+      const result = await client.fetch(`*[_type == "cv"][0]{
+        cvFile {
+          asset->{
+            url
+          }
+        }
+      }`);
+      return result;
+    },
+  });
+
   const handleEmailClick = () => {
     window.location.href = "mailto:adebanjiayeni@gmail.com";
   };
@@ -24,13 +41,24 @@ export function Hero() {
   };
 
   const handleViewCV = () => {
-    // Placeholder - Replace with actual CV URL
-    window.open("#", '_blank');
+    if (cvData?.cvFile?.asset?.url) {
+      window.open(cvData.cvFile.asset.url, '_blank');
+    } else {
+      toast.error("CV is not available at the moment");
+    }
   };
 
   const handleDownloadCV = () => {
-    // Placeholder - Replace with actual CV download URL
-    window.open("#", '_blank');
+    if (cvData?.cvFile?.asset?.url) {
+      const link = document.createElement('a');
+      link.href = cvData.cvFile.asset.url;
+      link.download = 'Dr_Adebanji_Ayeni_CV.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else {
+      toast.error("CV is not available for download at the moment");
+    }
   };
 
   const images = [

@@ -1,7 +1,13 @@
 import { Link } from "react-router-dom";
-import { Menu } from "lucide-react";
+import { Menu, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 
 export function Header() {
@@ -12,47 +18,59 @@ export function Header() {
     }
   };
 
-  const NavLinks = () => {
-    const sections = [
-      { id: 'home', label: 'Home' },
-      { id: 'about', label: 'About' },
-      { id: 'skills', label: 'Skills' },
-      { id: 'education', label: 'Education' },
-      { id: 'positions', label: 'Academic Positions' },
-      { id: 'research', label: 'Research Projects' },
-      { id: 'publications', label: 'Publications' },
-      { id: 'awards', label: 'Awards' },
-      { id: 'blog', label: 'Blog' }
-    ];
+  const mainLinks = [
+    { id: 'home', label: 'Home' },
+    { id: 'about', label: 'About' },
+    { id: 'skills', label: 'Skills' },
+    { id: 'awards', label: 'Awards' },
+  ];
 
-    const isActive = (id: string) => {
-      if (typeof window !== 'undefined') {
-        const element = document.getElementById(id);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top >= 0 && rect.top <= window.innerHeight / 2;
-        }
-      }
-      return false;
-    };
+  const academicLinks = [
+    { id: 'education', label: 'Education' },
+    { id: 'positions', label: 'Academic Positions' },
+    { id: 'research', label: 'Research Projects' },
+    { id: 'publications', label: 'Publications' },
+  ];
 
-    return (
-      <>
-        {sections.map(({ id, label }) => (
-          <button
-            key={id}
-            onClick={() => scrollToSection(id)}
-            className={cn(
-              "px-4 py-2 text-[#697484] transition-colors relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[#9b87f5] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left animate-fade-in",
-              isActive(id) && "text-[#9b87f5] after:scale-x-100"
-            )}
-          >
-            {label}
-          </button>
-        ))}
-      </>
-    );
-  };
+  const NavLinks = () => (
+    <>
+      {mainLinks.map(({ id, label }) => (
+        <button
+          key={id}
+          onClick={() => scrollToSection(id)}
+          className={cn(
+            "px-4 py-2 text-[#697484] transition-colors relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[#9b87f5] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left animate-fade-in"
+          )}
+        >
+          {label}
+        </button>
+      ))}
+
+      <DropdownMenu>
+        <DropdownMenuTrigger className="px-4 py-2 text-[#697484] transition-colors inline-flex items-center gap-1">
+          Academic <ChevronDown className="h-4 w-4" />
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end" className="w-56 bg-white">
+          {academicLinks.map(({ id, label }) => (
+            <DropdownMenuItem
+              key={id}
+              onClick={() => scrollToSection(id)}
+              className="cursor-pointer"
+            >
+              {label}
+            </DropdownMenuItem>
+          ))}
+        </DropdownMenuContent>
+      </DropdownMenu>
+
+      <button
+        onClick={() => scrollToSection('blog')}
+        className="px-4 py-2 text-[#697484] transition-colors relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[#9b87f5] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left animate-fade-in"
+      >
+        Blog
+      </button>
+    </>
+  );
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl shadow-sm border-b border-purple-100/20">
