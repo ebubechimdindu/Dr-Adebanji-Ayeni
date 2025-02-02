@@ -47,6 +47,7 @@ export function WorkExperienceSection() {
     queryKey: ['work-experience'],
     queryFn: async () => {
       try {
+        console.log('Fetching work experience data...');
         const data = await client.fetch(`
           *[_type == "workExperience"] | order(startDate desc) {
             _id,
@@ -60,12 +61,16 @@ export function WorkExperienceSection() {
             achievements
           }
         `);
-        return data.length > 0 ? data : placeholderExperiences;
+        console.log('Fetched data:', data);
+        // Return placeholder data if no data is found or if data is empty
+        return (!data || data.length === 0) ? placeholderExperiences : data;
       } catch (error) {
         console.error('Error fetching work experience:', error);
         return placeholderExperiences;
       }
-    }
+    },
+    // Initialize with placeholder data
+    initialData: placeholderExperiences,
   });
 
   if (isLoading) {
