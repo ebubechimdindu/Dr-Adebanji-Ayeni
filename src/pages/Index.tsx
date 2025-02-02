@@ -10,6 +10,7 @@ import { EducationSection } from "@/components/sections/EducationSection";
 import { AcademicPositionsSection } from "@/components/sections/AcademicPositionsSection";
 import { PublicationsSection } from "@/components/sections/PublicationsSection";
 import { AwardsSection } from "@/components/sections/AwardsSection";
+import { ContactSection } from "@/components/sections/ContactSection";
 
 const Index = () => {
   return (
@@ -29,6 +30,7 @@ const Index = () => {
       <PublicationsSection />
       <AwardsSection />
       <BlogSection />
+      <ContactSection />
       <Footer />
     </div>
   );

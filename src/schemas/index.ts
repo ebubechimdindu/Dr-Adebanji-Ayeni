@@ -8,6 +8,7 @@ import portfolio from './portfolio'
 import skill from './skill'
 import cv from './cv'
 import workExperience from './workExperience'
+import blogPost from './blogPost'
 
 export const schemaTypes = [
   academicPosition,
@@ -19,5 +20,6 @@ export const schemaTypes = [
   portfolio,
   skill,
   cv,
-  workExperience
+  workExperience,
+  blogPost
 ]
