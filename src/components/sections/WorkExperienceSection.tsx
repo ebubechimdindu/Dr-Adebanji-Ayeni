@@ -1,24 +1,70 @@
 import { useQuery } from "@tanstack/react-query";
-import { client } from "@/lib/sanity.client";
+import { client } from "@/lib/sanity";
+
+const placeholderExperiences = [
+  {
+    _id: "placeholder-1",
+    title: "Post Doctoral Fellow",
+    organization: "North-West University",
+    startDate: "2023-01-01",
+    endDate: null,
+    isCurrent: true,
+    description: "Research focus on informal entrepreneurship and business administration",
+    responsibilities: [
+      "Conducting research on informal entrepreneurship",
+      "Publishing in high-impact peer-reviewed journals",
+      "Mentoring graduate students"
+    ],
+    achievements: [
+      "Published multiple Scopus-indexed papers",
+      "Successfully mentored 5 graduate students",
+      "Developed new research methodologies"
+    ]
+  },
+  {
+    _id: "placeholder-2",
+    title: "Lecturer",
+    organization: "Wigwe University",
+    startDate: "2023-01-01",
+    endDate: null,
+    isCurrent: true,
+    description: "Teaching and research in business administration",
+    responsibilities: [
+      "Teaching undergraduate courses",
+      "Curriculum development",
+      "Student mentoring"
+    ],
+    achievements: [
+      "Developed innovative teaching methodologies",
+      "High student satisfaction ratings",
+      "Successfully implemented new curriculum"
+    ]
+  }
+];
 
 export function WorkExperienceSection() {
   const { data: experiences, isLoading } = useQuery({
     queryKey: ['work-experience'],
     queryFn: async () => {
-      const data = await client.fetch(`
-        *[_type == "workExperience"] | order(startDate desc) {
-          _id,
-          title,
-          organization,
-          startDate,
-          endDate,
-          isCurrent,
-          description,
-          responsibilities,
-          achievements
-        }
-      `);
-      return data;
+      try {
+        const data = await client.fetch(`
+          *[_type == "workExperience"] | order(startDate desc) {
+            _id,
+            title,
+            organization,
+            startDate,
+            endDate,
+            isCurrent,
+            description,
+            responsibilities,
+            achievements
+          }
+        `);
+        return data.length > 0 ? data : placeholderExperiences;
+      } catch (error) {
+        console.error('Error fetching work experience:', error);
+        return placeholderExperiences;
+      }
     }
   });
 
