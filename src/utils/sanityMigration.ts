@@ -29,7 +29,7 @@ const migrationData = {
       ]
     },
     {
-      _type: 'workExperience',
+      _type: 'workExperience' as const,
       title: "Lecturer I",
       organization: "Wigwe University",
       startDate: "2024-08-01",
@@ -45,9 +45,9 @@ const migrationData = {
         "Developed innovative teaching methodologies",
         "High student satisfaction ratings"
       ]
-    } as WorkExperience,
+    },
     {
-      _type: 'workExperience',
+      _type: 'workExperience' as const,
       title: "Lecturer II",
       organization: "Landmark University",
       startDate: "2020-01-01",
@@ -65,8 +65,8 @@ const migrationData = {
         "Published several research papers",
         "Improved course curriculum"
       ]
-    } as WorkExperience
-  ] as WorkExperience[],
+    }
+  ] as const,
 
   academicPositions: [
     {
@@ -82,7 +82,7 @@ const migrationData = {
       ]
     },
     {
-      _type: 'academicPosition',
+      _type: 'academicPosition' as const,
       title: "Lecturer I",
       institution: "Wigwe University",
       startDate: "2024-08-01",
@@ -92,8 +92,8 @@ const migrationData = {
         "Entrepreneurship",
         "Academic Performance"
       ]
-    } as AcademicPosition
-  ] as AcademicPosition[],
+    }
+  ] as const,
 
   education: [
     {
@@ -108,15 +108,15 @@ const migrationData = {
       coAdvisor: "Olaleke Ogunnaike"
     },
     {
-      _type: 'education',
+      _type: 'education' as const,
       degree: "M.S. in Business Administration",
       institution: "Covenant University",
       field: "Business Administration",
       startYear: 2011,
       endYear: 2013,
       dissertationTitle: "Assessing the electronics market in an informal economy: a study of computer village, Ikeja, Lagos state"
-    } as Education
-  ] as Education[],
+    }
+  ] as const,
 
   skills: [
     {
@@ -125,16 +125,16 @@ const migrationData = {
       name: "Microsoft Office"
     },
     {
-      _type: 'skill',
+      _type: 'skill' as const,
       category: "Technical Tools",
       name: "SPSS"
-    } as Skill,
+    },
     {
-      _type: 'skill',
+      _type: 'skill' as const,
       category: "Research Methods",
       name: "Structural Equation Modelling (SEM) in PLS"
-    } as Skill
-  ] as Skill[],
+    }
+  ] as const,
 
   awards: [
     {
@@ -145,16 +145,16 @@ const migrationData = {
       description: "Recognition for outstanding contribution to curriculum development"
     },
     {
-      _type: 'award',
+      _type: 'award' as const,
       title: "Best Research Paper",
       organization: "International Conference on Business Administration",
       year: 2023,
       description: "Award for outstanding research contribution in business administration"
-    } as Award
-  ] as Award[]
+    }
+  ] as const
 };
 
-const createDocument = async <T extends SanityDocument>(document: T): Promise<boolean> => {
+async function createDocument<T extends { _type: string }>(document: T): Promise<boolean> {
   try {
     const result = await client.create(document);
     console.log(`Created ${document._type}: ${result._id}`);
@@ -163,7 +163,7 @@ const createDocument = async <T extends SanityDocument>(document: T): Promise<bo
     console.error(`Error creating ${document._type}:`, error);
     return false;
   }
-};
+}
 
 export const migrateData = async () => {
   console.log('Starting data migration...');
