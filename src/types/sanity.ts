@@ -46,19 +46,37 @@ export interface Award {
   description?: string;
 }
 
-export interface Post {
+export interface BlogPost {
+  _id: string;
   _type: 'post';
   title: string;
+  slug: {
+    current: string;
+  };
+  mainImage?: {
+    asset: {
+      _ref: string;
+    };
+  };
+  description?: string;
   publishedAt: string;
-  description: string;
 }
 
 export interface Portfolio {
+  _id: string;
   _type: 'portfolio';
   title: string;
   description: string;
+  image?: {
+    asset: {
+      _ref: string;
+    };
+  };
   projectUrl?: string;
 }
+
+// Alias for backward compatibility
+export type PortfolioItem = Portfolio;
 
 export type SanityDocument = 
   | WorkExperience 
@@ -66,5 +84,5 @@ export type SanityDocument =
   | Education 
   | Skill 
   | Award 
-  | Post 
+  | BlogPost 
   | Portfolio;

@@ -4,16 +4,14 @@ import type {
   AcademicPosition, 
   Education, 
   Skill, 
-  Award, 
-  Post, 
-  Portfolio,
+  Award,
   SanityDocument 
 } from '@/types/sanity';
 
 const migrationData = {
   workExperience: [
     {
-      _type: 'workExperience',
+      _type: 'workExperience' as const,
       title: "Post Doctoral Researcher",
       organization: "North West University",
       startDate: "2024-07-01",
@@ -29,7 +27,7 @@ const migrationData = {
         "Publishing multiple SCOPUS papers",
         "Multidisciplinary research impact"
       ]
-    } as WorkExperience,
+    },
     {
       _type: 'workExperience',
       title: "Lecturer I",
@@ -68,11 +66,11 @@ const migrationData = {
         "Improved course curriculum"
       ]
     } as WorkExperience
-  ],
+  ] as WorkExperience[],
 
   academicPositions: [
     {
-      _type: 'academicPosition',
+      _type: 'academicPosition' as const,
       title: "Post Doctoral Fellow",
       institution: "North-West University",
       startDate: "2024-07-01",
@@ -82,7 +80,7 @@ const migrationData = {
         "Internal mobility and quality Assurance",
         "Entrepreneurial abilities and business performance"
       ]
-    } as AcademicPosition,
+    },
     {
       _type: 'academicPosition',
       title: "Lecturer I",
@@ -95,11 +93,11 @@ const migrationData = {
         "Academic Performance"
       ]
     } as AcademicPosition
-  ],
+  ] as AcademicPosition[],
 
   education: [
     {
-      _type: 'education',
+      _type: 'education' as const,
       degree: "Ph.D. in Business Administration",
       field: "Informal Entrepreneurship",
       institution: "Covenant University",
@@ -108,7 +106,7 @@ const migrationData = {
       dissertationTitle: "Motivation For Informal Entrepreneurs: Implications for Business Performance in Selected Electronics Markets in Southwest, Nigeria",
       principalAdvisor: "Oluwole Iyiola",
       coAdvisor: "Olaleke Ogunnaike"
-    } as Education,
+    },
     {
       _type: 'education',
       degree: "M.S. in Business Administration",
@@ -118,14 +116,14 @@ const migrationData = {
       endYear: 2013,
       dissertationTitle: "Assessing the electronics market in an informal economy: a study of computer village, Ikeja, Lagos state"
     } as Education
-  ],
+  ] as Education[],
 
   skills: [
     {
-      _type: 'skill',
+      _type: 'skill' as const,
       category: "Technical Tools",
       name: "Microsoft Office"
-    } as Skill,
+    },
     {
       _type: 'skill',
       category: "Technical Tools",
@@ -136,16 +134,16 @@ const migrationData = {
       category: "Research Methods",
       name: "Structural Equation Modelling (SEM) in PLS"
     } as Skill
-  ],
+  ] as Skill[],
 
   awards: [
     {
-      _type: 'award',
+      _type: 'award' as const,
       title: "EDS Curriculum Overhauling",
       organization: "Centre of Entrepreneurship development Studies, Landmark University",
       year: 2024,
       description: "Recognition for outstanding contribution to curriculum development"
-    } as Award,
+    },
     {
       _type: 'award',
       title: "Best Research Paper",
@@ -153,10 +151,10 @@ const migrationData = {
       year: 2023,
       description: "Award for outstanding research contribution in business administration"
     } as Award
-  ]
+  ] as Award[]
 };
 
-const createDocument = async (document: SanityDocument) => {
+const createDocument = async <T extends SanityDocument>(document: T): Promise<boolean> => {
   try {
     const result = await client.create(document);
     console.log(`Created ${document._type}: ${result._id}`);
