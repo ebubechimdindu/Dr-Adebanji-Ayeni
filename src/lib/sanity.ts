@@ -5,7 +5,8 @@ export const client = createClient({
   projectId: '9uqjt3zf',
   dataset: 'production',
   apiVersion: '2024-01-29',
-  useCdn: false, // Disable CDN to ensure fresh data
+  useCdn: true,
+  token: process.env.SANITY_TOKEN
 });
 
 const builder = imageUrlBuilder(client);
