@@ -3,6 +3,7 @@ import { client } from "@/lib/sanity";
 import { urlFor } from "@/lib/sanity";
 import type { BlogPost } from "@/types/sanity";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Link } from "react-router-dom";
 
 export function BlogSection() {
   const { data: posts, isLoading, isError } = useQuery({
@@ -59,7 +60,6 @@ export function BlogSection() {
     );
   }
 
-  // If no posts are available yet, show a message
   if (!posts || posts.length === 0) {
     return (
       <section className="min-h-screen bg-[#F8F9FA] px-4 sm:px-6 lg:px-20 py-16 sm:py-20">
@@ -93,10 +93,13 @@ export function BlogSection() {
               <div className="p-6 sm:p-8">
                 <h3 className="text-xl sm:text-2xl font-semibold mb-4 hover:text-[#A53DFF] transition-colors">{post.title}</h3>
                 <p className="text-[#697484] mb-4">{post.description}</p>
-                <button className="text-[#A53DFF] font-semibold hover:text-[#8431CC] transition-colors group">
+                <Link 
+                  to={`/blog/${post.slug.current}`}
+                  className="text-[#A53DFF] font-semibold hover:text-[#8431CC] transition-colors group inline-flex items-center"
+                >
                   Read More
-                  <span className="inline-block transition-transform duration-300 group-hover:translate-x-2">→</span>
-                </button>
+                  <span className="inline-block transition-transform duration-300 group-hover:translate-x-2 ml-2">→</span>
+                </Link>
               </div>
             </article>
           ))}
