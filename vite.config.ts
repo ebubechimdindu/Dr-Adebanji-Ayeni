@@ -14,4 +14,7 @@ export default defineConfig({
     port: 8080,
     host: true,
   },
+  define: {
+    'process.env.SANITY_TOKEN': JSON.stringify(process.env.SANITY_TOKEN)
+  }
 });
