@@ -11,6 +11,8 @@ import { AcademicPositionsSection } from "@/components/sections/AcademicPosition
 import { PublicationsSection } from "@/components/sections/PublicationsSection";
 import { AwardsSection } from "@/components/sections/AwardsSection";
 import { ContactSection } from "@/components/sections/ContactSection";
+import { WorkExperienceSection } from "@/components/sections/work-experience/WorkExperienceSection";
+import { ProfessionalAffiliationsSection } from "@/components/sections/ProfessionalAffiliationsSection";
 import { MigrateButton } from "@/components/admin/MigrateButton";
 
 const Index = () => {
@@ -35,9 +37,11 @@ const Index = () => {
       <SkillsSection />
       <EducationSection />
       <AcademicPositionsSection />
+      <WorkExperienceSection />
       <PortfolioSection />
       <PublicationsSection />
       <AwardsSection />
+      <ProfessionalAffiliationsSection />
       <BlogSection />
       <ContactSection />
       <Footer />

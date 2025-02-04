@@ -78,6 +78,13 @@ export interface Portfolio {
 // Alias for backward compatibility
 export type PortfolioItem = Portfolio;
 
+export interface Affiliation {
+  _id: string;
+  organization: string;
+  membershipNumber: string;
+}
+
+// Update SanityDocument type to include Affiliation
 export type SanityDocument = 
   | WorkExperience 
   | AcademicPosition 
@@ -85,4 +92,5 @@ export type SanityDocument =
   | Skill 
   | Award 
   | BlogPost 
-  | Portfolio;
+  | Portfolio
+  | Affiliation;

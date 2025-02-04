@@ -3,6 +3,7 @@ import { client } from "@/lib/sanity";
 import { ExperienceCard } from "./ExperienceCard";
 import { LoadingState } from "./LoadingState";
 import { placeholderWorkExperience } from "@/lib/placeholderData";
+import { Briefcase } from "lucide-react";
 
 export function WorkExperienceSection() {
   const { data: experiences, isLoading } = useQuery({
@@ -34,13 +35,20 @@ export function WorkExperienceSection() {
     initialData: placeholderWorkExperience,
   });
 
+  if (!experiences || experiences.length === 0) {
+    return null;
+  }
+
   if (isLoading) {
     return (
       <section id="experience" className="min-h-screen bg-white px-4 sm:px-6 lg:px-20 py-16 sm:py-20">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#132238] mb-8 sm:mb-12 animate-fade-in">
-            Work Experience
-          </h2>
+          <div className="flex items-center gap-3 mb-8 sm:mb-12">
+            <Briefcase className="w-8 h-8 text-[#7E69AB]" />
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#132238] animate-fade-in">
+              Work Experience
+            </h2>
+          </div>
           <LoadingState />
         </div>
       </section>
@@ -50,9 +58,12 @@ export function WorkExperienceSection() {
   return (
     <section id="experience" className="min-h-screen bg-white px-4 sm:px-6 lg:px-20 py-16 sm:py-20">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl font-bold text-[#132238] mb-8 sm:mb-12 animate-fade-in">
-          Work Experience
-        </h2>
+        <div className="flex items-center gap-3 mb-8 sm:mb-12">
+          <Briefcase className="w-8 h-8 text-[#7E69AB]" />
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#132238] animate-fade-in">
+            Work Experience
+          </h2>
+        </div>
         <div className="space-y-8">
           {experiences?.map((experience) => (
             <ExperienceCard key={experience._id} experience={experience} />
