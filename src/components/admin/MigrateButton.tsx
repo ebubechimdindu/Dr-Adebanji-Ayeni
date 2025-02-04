@@ -5,22 +5,22 @@ import { toast } from "sonner";
 export function MigrateButton() {
   const handleMigration = async () => {
     const confirmed = window.confirm(
-      "This will delete all existing data and replace it with sample data. Are you sure?"
+      "This will delete all existing Sanity documents and replace them with sample data. Are you sure?"
     );
 
     if (!confirmed) return;
 
-    toast.loading("Migrating data...");
+    toast.loading("Migrating data to Sanity...");
     
     try {
       const success = await migrateData();
       if (success) {
-        toast.success("Data migration completed successfully");
+        toast.success("Data migration to Sanity completed successfully");
       } else {
-        toast.error("Data migration failed");
+        toast.error("Data migration to Sanity failed");
       }
     } catch (error) {
-      toast.error("Error during migration");
+      toast.error("Error during Sanity migration");
       console.error(error);
     }
   };

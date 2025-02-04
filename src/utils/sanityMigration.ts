@@ -13,7 +13,7 @@ const createDocument = async (document: any) => {
 };
 
 export const migrateData = async () => {
-  console.log('Starting data migration...');
+  console.log('Starting Sanity data migration...');
   
   try {
     // Delete existing documents for each type
@@ -35,10 +35,10 @@ export const migrateData = async () => {
       }
     }
 
-    console.log('Data migration completed');
+    console.log('Sanity data migration completed');
     return success;
   } catch (error) {
-    console.error('Error during migration:', error);
+    console.error('Error during Sanity migration:', error);
     return false;
   }
 };
