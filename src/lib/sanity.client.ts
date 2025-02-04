@@ -1,6 +1,5 @@
 import { createClient } from '@sanity/client'
 
-// Initialize client with project details
 export const client = createClient({
   projectId: '9uqjt3zf',
   dataset: 'production',
@@ -15,7 +14,7 @@ export const getProfile = async () => {
     const profile = await client.fetch(`*[_type == "profile"][0]`)
     return profile
   } catch (error) {
-    console.log('Error fetching profile:', error)
+    console.error('Error fetching profile:', error)
     return null
   }
 }
@@ -26,7 +25,7 @@ export const getCV = async () => {
     const cv = await client.fetch(`*[_type == "cv"][0]`)
     return cv
   } catch (error) {
-    console.log('Error fetching CV:', error)
+    console.error('Error fetching CV:', error)
     return null
   }
 }
