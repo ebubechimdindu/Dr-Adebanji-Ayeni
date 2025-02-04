@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { client } from "@/lib/sanity.client";
+import { placeholderSkills } from "@/lib/placeholderData";
 
 export function SkillsSection() {
   const [showAll, setShowAll] = useState(false);
@@ -11,14 +12,21 @@ export function SkillsSection() {
   const { data: skills, isLoading } = useQuery({
     queryKey: ['skills'],
     queryFn: async () => {
-      return client.fetch(`
-        *[_type == "skill"] | order(category) {
-          _id,
-          category,
-          name
-        }
-      `);
+      try {
+        const data = await client.fetch(`
+          *[_type == "skill"] | order(category) {
+            _id,
+            category,
+            name
+          }
+        `);
+        return (!data || data.length === 0) ? placeholderSkills : data;
+      } catch (error) {
+        console.error('Error fetching skills:', error);
+        return placeholderSkills;
+      }
     },
+    initialData: placeholderSkills,
   });
 
   // Group skills by category

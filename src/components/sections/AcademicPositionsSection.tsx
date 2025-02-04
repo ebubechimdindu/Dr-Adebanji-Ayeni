@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { client } from "@/lib/sanity.client";
+import { placeholderAcademicPositions } from "@/lib/placeholderData";
 
 export function AcademicPositionsSection() {
   const [showAll, setShowAll] = useState(false);
@@ -11,18 +12,25 @@ export function AcademicPositionsSection() {
   const { data: positions, isLoading } = useQuery({
     queryKey: ['academic_positions'],
     queryFn: async () => {
-      return client.fetch(`
-        *[_type == "academicPosition"] | order(startDate desc) {
-          _id,
-          title,
-          institution,
-          startDate,
-          endDate,
-          isCurrent,
-          researchAreas
-        }
-      `);
+      try {
+        const data = await client.fetch(`
+          *[_type == "academicPosition"] | order(startDate desc) {
+            _id,
+            title,
+            institution,
+            startDate,
+            endDate,
+            isCurrent,
+            researchAreas
+          }
+        `);
+        return (!data || data.length === 0) ? placeholderAcademicPositions : data;
+      } catch (error) {
+        console.error('Error fetching academic positions:', error);
+        return placeholderAcademicPositions;
+      }
     },
+    initialData: placeholderAcademicPositions,
   });
 
   const displayedPositions = showAll ? positions : positions?.slice(0, 3);

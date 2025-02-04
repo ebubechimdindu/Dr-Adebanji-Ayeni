@@ -1,21 +1,29 @@
 import { useQuery } from "@tanstack/react-query";
 import { client } from "@/lib/sanity.client";
+import { placeholderAwards } from "@/lib/placeholderData";
 
 export function AwardsSection() {
   const { data: awards, isLoading } = useQuery({
     queryKey: ['awards'],
     queryFn: async () => {
-      return client.fetch(`
-        *[_type == "award"] | order(year desc) {
-          _id,
-          title,
-          organization,
-          year,
-          category,
-          description
-        }
-      `);
-    }
+      try {
+        const data = await client.fetch(`
+          *[_type == "award"] | order(year desc) {
+            _id,
+            title,
+            organization,
+            year,
+            category,
+            description
+          }
+        `);
+        return (!data || data.length === 0) ? placeholderAwards : data;
+      } catch (error) {
+        console.error('Error fetching awards:', error);
+        return placeholderAwards;
+      }
+    },
+    initialData: placeholderAwards,
   });
 
   if (isLoading) {

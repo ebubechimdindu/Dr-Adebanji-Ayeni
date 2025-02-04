@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { client } from "@/lib/sanity.client";
+import { placeholderEducation } from "@/lib/placeholderData";
 
 export function EducationSection() {
   const [showAll, setShowAll] = useState(false);
@@ -11,20 +12,27 @@ export function EducationSection() {
   const { data: education, isLoading } = useQuery({
     queryKey: ['education'],
     queryFn: async () => {
-      return client.fetch(`
-        *[_type == "education"] | order(endYear desc) {
-          _id,
-          degree,
-          institution,
-          field,
-          startYear,
-          endYear,
-          dissertationTitle,
-          principalAdvisor,
-          coAdvisor
-        }
-      `);
+      try {
+        const data = await client.fetch(`
+          *[_type == "education"] | order(endYear desc) {
+            _id,
+            degree,
+            institution,
+            field,
+            startYear,
+            endYear,
+            dissertationTitle,
+            principalAdvisor,
+            coAdvisor
+          }
+        `);
+        return (!data || data.length === 0) ? placeholderEducation : data;
+      } catch (error) {
+        console.error('Error fetching education:', error);
+        return placeholderEducation;
+      }
     },
+    initialData: placeholderEducation,
   });
 
   const displayedEducation = showAll ? education : education?.slice(0, 3);
