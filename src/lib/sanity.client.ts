@@ -1,5 +1,4 @@
 import { createClient } from '@sanity/client'
-import { supabase } from "@/integrations/supabase/client";
 
 // Initialize client with project details
 export const client = createClient({
@@ -7,7 +6,7 @@ export const client = createClient({
   dataset: 'production',
   useCdn: true,
   apiVersion: '2024-01-29',
-  token: process.env.SANITY_TOKEN // This will be automatically populated from Supabase
+  token: process.env.SANITY_TOKEN
 })
 
 // Helper function to get profile data
