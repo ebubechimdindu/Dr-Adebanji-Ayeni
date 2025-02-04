@@ -111,7 +111,6 @@ export const placeholderWorkExperience: WorkExperience[] = [
     organization: "North West University",
     startDate: "2024-07-01",
     isCurrent: true,
-    type: "Research",
     description: "Research and evaluation of postgraduate studies with focus on qualitative and quantitative primary data analysis",
     responsibilities: [
       "Guidance to colleagues in professional development",
