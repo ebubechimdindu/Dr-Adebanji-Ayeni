@@ -7,33 +7,33 @@ import { client } from "@/lib/sanity";
 
 const placeholderEducation = [
   {
-    _id: "placeholder-1",
+    _id: "phd-1",
     degree: "Ph.D.",
     institution: "Covenant University",
-    field: "Business Administration",
-    startYear: 2018,
-    endYear: 2022,
-    dissertationTitle: "The Impact of Informal Entrepreneurship on Economic Development",
-    principalAdvisor: "Prof. John Smith",
-    coAdvisor: "Dr. Jane Doe"
+    field: "Business Administration (Informal Entrepreneurship)",
+    startYear: 2014,
+    endYear: 2020,
+    dissertationTitle: "Motivation For Informal Entrepreneurs: Implications for Business Performance in Selected Electronics Markets in Southwest, Nigeria",
+    principalAdvisor: "Oluwole Iyiola",
+    coAdvisor: "Olaleke Ogunnaike"
   },
   {
-    _id: "placeholder-2",
-    degree: "M.Sc.",
+    _id: "ms-1",
+    degree: "M.S.",
     institution: "Covenant University",
     field: "Business Administration",
-    startYear: 2016,
-    endYear: 2018,
-    dissertationTitle: "Strategic Management in Small Enterprises",
-    principalAdvisor: "Prof. Sarah Johnson"
+    startYear: 2011,
+    endYear: 2013,
+    dissertationTitle: "Assessing the electronics market in an informal economy: a study of computer village, Ikeja, Lagos state"
   },
   {
-    _id: "placeholder-3",
-    degree: "B.Sc.",
+    _id: "bs-1",
+    degree: "B.S.",
     institution: "Covenant University",
     field: "Accounting",
-    startYear: 2012,
-    endYear: 2016
+    startYear: 2005,
+    endYear: 2009,
+    dissertationTitle: "The Role Of Accounting Standards in the Banking Industry"
   }
 ];
 

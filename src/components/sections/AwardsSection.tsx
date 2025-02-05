@@ -3,20 +3,39 @@ import { client } from "@/lib/sanity";
 
 const placeholderAwards = [
   {
-    _id: "placeholder-1",
-    title: "Outstanding Research Contribution",
-    organization: "African Business Research Council",
-    year: 2023,
-    category: "Research Excellence",
-    description: "Recognized for significant contributions to informal entrepreneurship research in Africa"
+    _id: "award-1",
+    title: "EDS Curriculum Overhauling",
+    organization: "Centre of Entrepreneurship development Studies, Landmark University",
+    year: 2024,
+    description: "Recognition for curriculum development contributions"
   },
   {
-    _id: "placeholder-2",
-    title: "Excellence in Teaching",
-    organization: "Wigwe University",
-    year: 2023,
-    category: "Academic Excellence",
-    description: "Awarded for innovative teaching methods and student mentorship"
+    _id: "award-2",
+    title: "Recognition in Academic Mutability and Tenacity",
+    organization: "Centre of Entrepreneurship development Studies, Landmark University",
+    year: 2024,
+    description: "Acknowledged for academic excellence and persistence"
+  },
+  {
+    _id: "award-3",
+    title: "Certificate of Service",
+    organization: "Department of Business Administration, Landmark University",
+    year: 2019,
+    description: "Recognition for service as Staff Adviser"
+  },
+  {
+    _id: "award-4",
+    title: "Recognition of Work Diligence",
+    organization: "Office of the Vice-Chancellor",
+    year: 2016,
+    description: "Acknowledged for course rationalization efforts"
+  },
+  {
+    _id: "award-5",
+    title: "Entrepreneur of the Year",
+    organization: "NUASA Covenant University Chapter",
+    year: 2008,
+    description: "Recognition for entrepreneurial excellence"
   }
 ];
 

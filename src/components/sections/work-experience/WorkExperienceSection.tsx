@@ -6,43 +6,62 @@ import { Briefcase } from "lucide-react";
 
 const placeholderExperiences = [
   {
-    _id: "placeholder-1",
-    title: "Post Doctoral Fellow",
-    organization: "North-West University",
-    startDate: "2023-01-01",
+    _id: "work-1",
+    title: "Post Doctoral Researcher",
+    organization: "North West University",
+    startDate: "2024-07-01",
     endDate: null,
     isCurrent: true,
     type: "Academic",
-    description: "Research focus on informal entrepreneurship and business administration",
+    description: "Research and evaluation of postgraduate studies with focus on reducing unemployment through informal structures.",
     responsibilities: [
       "Conducting research on informal entrepreneurship",
-      "Publishing in high-impact peer-reviewed journals",
-      "Mentoring graduate students"
+      "Mentoring colleagues",
+      "Publishing in SCOPUS-indexed journals",
+      "Analyzing qualitative and quantitative data"
     ],
     achievements: [
-      "Published multiple Scopus-indexed papers",
-      "Successfully mentored 5 graduate students",
-      "Developed new research methodologies"
+      "In process of publishing 5+ SCOPUS papers",
+      "Developing multidisciplinary research impact",
+      "Contributing to unemployment reduction research"
     ]
   },
   {
-    _id: "placeholder-2",
+    _id: "work-2",
     title: "Lecturer",
     organization: "Wigwe University",
-    startDate: "2023-01-01",
+    startDate: "2024-08-01",
     endDate: null,
     isCurrent: true,
     type: "Academic",
-    description: "Teaching and research in business administration",
+    description: "Teaching business-related courses and conducting research at a new university.",
     responsibilities: [
-      "Teaching undergraduate courses",
-      "Curriculum development",
-      "Student mentoring"
+      "Delivering business lectures",
+      "Conducting research",
+      "Working with qualitative and quantitative data"
+    ],
+    achievements: []
+  },
+  {
+    _id: "work-3",
+    title: "Lecturer",
+    organization: "Landmark University",
+    startDate: "2018-02-01",
+    endDate: "2024-05-31",
+    isCurrent: false,
+    type: "Academic",
+    description: "Comprehensive academic role including teaching, research, and administrative duties.",
+    responsibilities: [
+      "Teaching business courses",
+      "Managing NIM examinations",
+      "Serving on university committees",
+      "Advising student organizations"
     ],
     achievements: [
-      "Developed innovative teaching methodologies",
-      "High student satisfaction ratings",
-      "Successfully implemented new curriculum"
+      "Published 20+ SCOPUS articles",
+      "Established CIPM linkage",
+      "Managed LUBACA as Staff Adviser",
+      "Organized international conference"
     ]
   }
 ];

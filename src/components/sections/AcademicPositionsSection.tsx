@@ -7,29 +7,38 @@ import { client } from "@/lib/sanity";
 
 const placeholderPositions = [
   {
-    _id: "placeholder-1",
+    _id: "pos-1",
     title: "Post Doctoral Fellow",
     institution: "North-West University",
-    startDate: "2023-01-01",
+    startDate: "2024-07-01",
     endDate: null,
     isCurrent: true,
     researchAreas: [
-      "Informal Entrepreneurship",
-      "Business Administration",
-      "Educational Technology"
+      "ICT pedagogy impact on student performance",
+      "Internal mobility and quality assurance",
+      "Entrepreneurial abilities and business survival"
     ]
   },
   {
-    _id: "placeholder-2",
-    title: "Lecturer",
+    _id: "pos-2",
+    title: "Lecturer I",
     institution: "Wigwe University",
-    startDate: "2023-01-01",
+    startDate: "2024-08-01",
     endDate: null,
     isCurrent: true,
+    researchAreas: []
+  },
+  {
+    _id: "pos-3",
+    title: "Lecturer II",
+    institution: "Landmark University",
+    startDate: "2020-01-01",
+    endDate: "2024-06-30",
+    isCurrent: false,
     researchAreas: [
-      "Business Management",
-      "Strategic Planning",
-      "Academic Research"
+      "Employee Welfare Impact",
+      "Innovation Strategies in Skin Care",
+      "Video Games and Academic Performance"
     ]
   }
 ];
