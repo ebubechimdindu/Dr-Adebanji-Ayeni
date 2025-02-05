@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { client } from "@/lib/sanity.client";
-import { placeholderAcademicPositions } from "@/lib/placeholderData";
 
 export function AcademicPositionsSection() {
   const [showAll, setShowAll] = useState(false);
@@ -24,13 +23,12 @@ export function AcademicPositionsSection() {
             researchAreas
           }
         `);
-        return (!data || data.length === 0) ? placeholderAcademicPositions : data;
+        return data || [];
       } catch (error) {
         console.error('Error fetching academic positions:', error);
-        return placeholderAcademicPositions;
+        return [];
       }
     },
-    initialData: placeholderAcademicPositions,
   });
 
   const displayedPositions = showAll ? positions : positions?.slice(0, 3);
@@ -53,6 +51,10 @@ export function AcademicPositionsSection() {
         </div>
       </section>
     );
+  }
+
+  if (!positions || positions.length === 0) {
+    return null;
   }
 
   return (

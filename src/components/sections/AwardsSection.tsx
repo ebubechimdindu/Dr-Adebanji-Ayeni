@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import { client } from "@/lib/sanity.client";
-import { placeholderAwards } from "@/lib/placeholderData";
 
 export function AwardsSection() {
   const { data: awards, isLoading } = useQuery({
@@ -17,13 +16,12 @@ export function AwardsSection() {
             description
           }
         `);
-        return (!data || data.length === 0) ? placeholderAwards : data;
+        return data || [];
       } catch (error) {
         console.error('Error fetching awards:', error);
-        return placeholderAwards;
+        return [];
       }
     },
-    initialData: placeholderAwards,
   });
 
   if (isLoading) {
@@ -43,6 +41,10 @@ export function AwardsSection() {
         </div>
       </section>
     );
+  }
+
+  if (!awards || awards.length === 0) {
+    return null;
   }
 
   return (

@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import { client } from "@/lib/sanity";
-import { placeholderAffiliations } from "@/lib/placeholderData";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Award } from "lucide-react";
@@ -17,13 +16,12 @@ export function ProfessionalAffiliationsSection() {
             membershipNumber
           }
         `);
-        return (!data || data.length === 0) ? placeholderAffiliations : data;
+        return data || [];
       } catch (error) {
         console.error('Error fetching affiliations:', error);
-        return placeholderAffiliations;
+        return [];
       }
     },
-    initialData: placeholderAffiliations,
   });
 
   if (!affiliations || affiliations.length === 0) {

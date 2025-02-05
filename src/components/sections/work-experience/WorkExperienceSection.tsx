@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import { client } from "@/lib/sanity";
 import { ExperienceCard } from "./ExperienceCard";
 import { LoadingState } from "./LoadingState";
-import { placeholderWorkExperience } from "@/lib/placeholderData";
 import { Briefcase } from "lucide-react";
 
 export function WorkExperienceSection() {
@@ -26,13 +25,12 @@ export function WorkExperienceSection() {
           }
         `);
         console.log('Fetched data:', data);
-        return (!data || data.length === 0) ? placeholderWorkExperience : data;
+        return data || [];
       } catch (error) {
         console.error('Error fetching work experience:', error);
-        return placeholderWorkExperience;
+        return [];
       }
     },
-    initialData: placeholderWorkExperience,
   });
 
   if (!experiences || experiences.length === 0) {

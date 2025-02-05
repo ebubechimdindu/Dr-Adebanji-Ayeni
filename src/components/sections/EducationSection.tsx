@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { client } from "@/lib/sanity.client";
-import { placeholderEducation } from "@/lib/placeholderData";
 
 export function EducationSection() {
   const [showAll, setShowAll] = useState(false);
@@ -26,13 +25,12 @@ export function EducationSection() {
             coAdvisor
           }
         `);
-        return (!data || data.length === 0) ? placeholderEducation : data;
+        return data || [];
       } catch (error) {
         console.error('Error fetching education:', error);
-        return placeholderEducation;
+        return [];
       }
     },
-    initialData: placeholderEducation,
   });
 
   const displayedEducation = showAll ? education : education?.slice(0, 3);
@@ -55,6 +53,10 @@ export function EducationSection() {
         </div>
       </section>
     );
+  }
+
+  if (!education || education.length === 0) {
+    return null;
   }
 
   return (
