@@ -5,6 +5,38 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { client } from "@/lib/sanity";
 
+const placeholderEducation = [
+  {
+    _id: "placeholder-1",
+    degree: "Ph.D.",
+    institution: "Covenant University",
+    field: "Business Administration",
+    startYear: 2018,
+    endYear: 2022,
+    dissertationTitle: "The Impact of Informal Entrepreneurship on Economic Development",
+    principalAdvisor: "Prof. John Smith",
+    coAdvisor: "Dr. Jane Doe"
+  },
+  {
+    _id: "placeholder-2",
+    degree: "M.Sc.",
+    institution: "Covenant University",
+    field: "Business Administration",
+    startYear: 2016,
+    endYear: 2018,
+    dissertationTitle: "Strategic Management in Small Enterprises",
+    principalAdvisor: "Prof. Sarah Johnson"
+  },
+  {
+    _id: "placeholder-3",
+    degree: "B.Sc.",
+    institution: "Covenant University",
+    field: "Accounting",
+    startYear: 2012,
+    endYear: 2016
+  }
+];
+
 export function EducationSection() {
   const [showAll, setShowAll] = useState(false);
 
@@ -25,12 +57,13 @@ export function EducationSection() {
             coAdvisor
           }
         `);
-        return data || [];
+        return (!data || data.length === 0) ? placeholderEducation : data;
       } catch (error) {
         console.error('Error fetching education:', error);
-        return [];
+        return placeholderEducation;
       }
     },
+    initialData: placeholderEducation,
   });
 
   const displayedEducation = showAll ? education : education?.slice(0, 3);
@@ -45,18 +78,14 @@ export function EducationSection() {
               <div key={i} className="bg-white p-6 rounded-xl shadow-lg">
                 <Skeleton className="h-6 w-48 mb-2" />
                 <Skeleton className="h-4 w-32 mb-1" />
-                <Skeleton className="h-4 w-24 mb-1" />
-                <Skeleton className="h-4 w-40" />
+                <Skeleton className="h-4 w-24 mb-4" />
+                <Skeleton className="h-4 w-full" />
               </div>
             ))}
           </div>
         </div>
       </section>
     );
-  }
-
-  if (!education || education.length === 0) {
-    return null;
   }
 
   return (

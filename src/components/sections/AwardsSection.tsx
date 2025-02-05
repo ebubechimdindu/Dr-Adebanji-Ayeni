@@ -1,6 +1,25 @@
 import { useQuery } from "@tanstack/react-query";
 import { client } from "@/lib/sanity";
 
+const placeholderAwards = [
+  {
+    _id: "placeholder-1",
+    title: "Outstanding Research Contribution",
+    organization: "African Business Research Council",
+    year: 2023,
+    category: "Research Excellence",
+    description: "Recognized for significant contributions to informal entrepreneurship research in Africa"
+  },
+  {
+    _id: "placeholder-2",
+    title: "Excellence in Teaching",
+    organization: "Wigwe University",
+    year: 2023,
+    category: "Academic Excellence",
+    description: "Awarded for innovative teaching methods and student mentorship"
+  }
+];
+
 export function AwardsSection() {
   const { data: awards, isLoading } = useQuery({
     queryKey: ['awards'],
@@ -16,12 +35,13 @@ export function AwardsSection() {
             description
           }
         `);
-        return data || [];
+        return (!data || data.length === 0) ? placeholderAwards : data;
       } catch (error) {
         console.error('Error fetching awards:', error);
-        return [];
+        return placeholderAwards;
       }
     },
+    initialData: placeholderAwards,
   });
 
   if (isLoading) {
@@ -41,10 +61,6 @@ export function AwardsSection() {
         </div>
       </section>
     );
-  }
-
-  if (!awards || awards.length === 0) {
-    return null;
   }
 
   return (

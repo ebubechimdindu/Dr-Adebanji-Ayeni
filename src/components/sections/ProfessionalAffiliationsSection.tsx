@@ -4,6 +4,24 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Award } from "lucide-react";
 
+const placeholderAffiliations = [
+  {
+    _id: "placeholder-1",
+    organization: "Nigerian Institute of Management",
+    membershipNumber: "NIM123456"
+  },
+  {
+    _id: "placeholder-2",
+    organization: "Institute of Debt Recovery Practitioners of Nigeria",
+    membershipNumber: "IDRP789012"
+  },
+  {
+    _id: "placeholder-3",
+    organization: "Academy Of Management Nigeria",
+    membershipNumber: "AMN345678"
+  }
+];
+
 export function ProfessionalAffiliationsSection() {
   const { data: affiliations } = useQuery({
     queryKey: ['affiliations'],
@@ -16,17 +34,14 @@ export function ProfessionalAffiliationsSection() {
             membershipNumber
           }
         `);
-        return data || [];
+        return (!data || data.length === 0) ? placeholderAffiliations : data;
       } catch (error) {
         console.error('Error fetching affiliations:', error);
-        return [];
+        return placeholderAffiliations;
       }
     },
+    initialData: placeholderAffiliations,
   });
-
-  if (!affiliations || affiliations.length === 0) {
-    return null;
-  }
 
   return (
     <section id="affiliations" className="min-h-screen bg-[#F8F9FA] px-4 sm:px-6 lg:px-20 py-16 sm:py-20">
