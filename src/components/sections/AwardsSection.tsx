@@ -1,6 +1,43 @@
 import { useQuery } from "@tanstack/react-query";
-import { client } from "@/lib/sanity.client";
-import { placeholderAwards } from "@/lib/placeholderData";
+import { client } from "@/lib/sanity";
+
+const placeholderAwards = [
+  {
+    _id: "award-1",
+    title: "EDS Curriculum Overhauling",
+    organization: "Centre of Entrepreneurship development Studies, Landmark University",
+    year: 2024,
+    description: "Recognition for curriculum development contributions"
+  },
+  {
+    _id: "award-2",
+    title: "Recognition in Academic Mutability and Tenacity",
+    organization: "Centre of Entrepreneurship development Studies, Landmark University",
+    year: 2024,
+    description: "Acknowledged for academic excellence and persistence"
+  },
+  {
+    _id: "award-3",
+    title: "Certificate of Service",
+    organization: "Department of Business Administration, Landmark University",
+    year: 2019,
+    description: "Recognition for service as Staff Adviser"
+  },
+  {
+    _id: "award-4",
+    title: "Recognition of Work Diligence",
+    organization: "Office of the Vice-Chancellor",
+    year: 2016,
+    description: "Acknowledged for course rationalization efforts"
+  },
+  {
+    _id: "award-5",
+    title: "Entrepreneur of the Year",
+    organization: "NUASA Covenant University Chapter",
+    year: 2008,
+    description: "Recognition for entrepreneurial excellence"
+  }
+];
 
 export function AwardsSection() {
   const { data: awards, isLoading } = useQuery({
