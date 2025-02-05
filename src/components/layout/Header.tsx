@@ -28,8 +28,6 @@ export function Header() {
   const academicLinks = [
     { id: 'education', label: 'Education' },
     { id: 'positions', label: 'Academic Positions' },
-    { id: 'research', label: 'Research Projects' },
-    { id: 'publications', label: 'Publications' },
   ];
 
   const NavLinks = () => (
@@ -64,10 +62,10 @@ export function Header() {
       </DropdownMenu>
 
       <button
-        onClick={() => scrollToSection('blog')}
+        onClick={() => scrollToSection('articles')}
         className="px-4 py-2 text-[#697484] transition-colors relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[#9b87f5] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left animate-fade-in"
       >
-        Blog
+        Articles
       </button>
     </>
   );
