@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Menu, ChevronDown } from "lucide-react";
+import { Menu, ChevronDown, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
@@ -37,7 +37,7 @@ export function Header() {
           key={id}
           onClick={() => scrollToSection(id)}
           className={cn(
-            "px-4 py-2 text-[#697484] transition-colors relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[#9b87f5] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left animate-fade-in"
+            "px-4 py-2 text-[#697484] transition-colors relative hover:text-[#9b87f5] after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[#9b87f5] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left animate-fade-in"
           )}
         >
           {label}
@@ -45,15 +45,18 @@ export function Header() {
       ))}
 
       <DropdownMenu>
-        <DropdownMenuTrigger className="px-4 py-2 text-[#697484] transition-colors inline-flex items-center gap-1">
+        <DropdownMenuTrigger className="px-4 py-2 text-[#697484] transition-colors inline-flex items-center gap-1 hover:text-[#9b87f5]">
           Academic <ChevronDown className="h-4 w-4" />
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-56 bg-white">
+        <DropdownMenuContent 
+          align="end" 
+          className="w-56 bg-white/95 backdrop-blur-lg border border-purple-100 shadow-lg rounded-lg p-2"
+        >
           {academicLinks.map(({ id, label }) => (
             <DropdownMenuItem
               key={id}
               onClick={() => scrollToSection(id)}
-              className="cursor-pointer"
+              className="cursor-pointer hover:bg-purple-50 rounded-md transition-colors duration-200"
             >
               {label}
             </DropdownMenuItem>
@@ -63,7 +66,7 @@ export function Header() {
 
       <button
         onClick={() => scrollToSection('articles')}
-        className="px-4 py-2 text-[#697484] transition-colors relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[#9b87f5] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left animate-fade-in"
+        className="px-4 py-2 text-[#697484] transition-colors relative hover:text-[#9b87f5] after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[#9b87f5] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left animate-fade-in"
       >
         Articles
       </button>
@@ -79,7 +82,7 @@ export function Header() {
           onClick={() => scrollToSection('home')}
         >
           <div className="bg-gradient-to-r from-[#9b87f5] to-[#7E69AB] overflow-hidden text-xl sm:text-2xl text-white font-medium w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full shadow-lg animate-scale-in">
-            A
+            <GraduationCap className="w-6 h-6" />
           </div>
           <div className="text-[#132238] text-xl sm:text-2xl font-bold animate-fade-in">
             Dr. Adebanji
