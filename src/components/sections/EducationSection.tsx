@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { client } from "@/lib/sanity.client";
+import { client } from "@/lib/sanity";
 
 export function EducationSection() {
   const [showAll, setShowAll] = useState(false);

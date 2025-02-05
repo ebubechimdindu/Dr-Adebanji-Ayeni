@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { client } from "@/lib/sanity.client";
+import { client } from "@/lib/sanity";
 
 export function AwardsSection() {
   const { data: awards, isLoading } = useQuery({
