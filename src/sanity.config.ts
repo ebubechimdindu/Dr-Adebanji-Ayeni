@@ -17,11 +17,7 @@ export default defineConfig({
     origin: [
       'http://localhost:8080',
       'http://localhost:5173',
-      'https://a9960a07-d6b7-4f7c-afb6-4029de7720be.lovableproject.com',
-      'https://preview--p-113468.lovable.app',
-      'https://p-113468.lovable.app',
-      'https://your-vercel-domain.vercel.app', // Replace this with your actual Vercel domain
-      'https://your-custom-domain.com' // If you have a custom domain
+      'https://adebanji-ayeni.vercel.app'
     ],
     credentials: true,
   }
