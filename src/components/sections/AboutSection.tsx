@@ -20,7 +20,8 @@ export function AboutSection() {
             <img
               src="/lovable-uploads/026a489d-43ce-4287-996d-70c5d798c4cb.png"
               alt="Dr. Adebanji Ayeni"
-              className="absolute inset-0 w-full h-full object-cover rounded-2xl shadow-xl hover:scale-105 transition-transform duration-300"
+              className="absolute inset-0 w-full h-full object-cover object-center rounded-2xl shadow-xl hover:scale-105 transition-transform duration-300"
+              loading="eager"
               onError={(e) => {
                 console.error("Failed to load About section image");
                 e.currentTarget.src = "/placeholder.svg";
