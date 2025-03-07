@@ -1,3 +1,4 @@
+
 import { Mail, Linkedin, ExternalLink, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
@@ -62,10 +63,10 @@ export function Hero() {
   };
 
   const images = [
-    "/lovable-uploads/63ec6cff-4fb4-434a-b383-b80f4b17651f.png",
-    "/lovable-uploads/d34350b6-7d57-48b1-9b2f-0d9c737fe9f3.png",
-    "/lovable-uploads/9afd0c1c-6e0d-4000-81d2-66eff9c60d01.png",
-    "/lovable-uploads/ec5cff29-6099-473c-bf8d-600089dcaee0.png"
+    "/lovable-uploads/1.png",  // First new image (red chair)
+    "/lovable-uploads/2.png",  // Second new image (formal standing)
+    "/lovable-uploads/3.png",  // Third new image (green background)
+    "/lovable-uploads/ec5cff29-6099-473c-bf8d-600089dcaee0.png"  // Keep one original image
   ];
 
   return (
