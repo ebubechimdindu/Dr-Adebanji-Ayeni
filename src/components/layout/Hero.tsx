@@ -62,12 +62,16 @@ export function Hero() {
     }
   };
 
+  // Updated image paths
   const images = [
     "/lovable-uploads/1.png",  // First new image (red chair)
     "/lovable-uploads/2.png",  // Second new image (formal standing)
     "/lovable-uploads/3.png",  // Third new image (green background)
     "/lovable-uploads/ec5cff29-6099-473c-bf8d-600089dcaee0.png"  // Keep one original image
   ];
+
+  // Let's add console logs to debug image loading
+  console.log("Image paths:", images);
 
   return (
     <section className="relative min-h-[80vh] flex items-center justify-center px-4 sm:px-6 lg:px-20 py-12 overflow-hidden bg-gradient-to-b from-white to-gray-50/30">
@@ -159,6 +163,10 @@ export function Hero() {
                           alt={`Dr. Adebanji Ayeni - Image ${index + 1}`}
                           className="w-full h-full object-cover rounded-[30px] transition-all duration-500 hover:scale-105 shadow-2xl relative z-10"
                           loading="lazy"
+                          onError={(e) => {
+                            console.error(`Error loading image: ${image}`);
+                            e.currentTarget.src = "/placeholder.svg"; // Fallback to placeholder
+                          }}
                         />
                       </div>
                     </CarouselItem>

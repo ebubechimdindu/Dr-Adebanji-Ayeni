@@ -21,6 +21,10 @@ export function AboutSection() {
               src="/lovable-uploads/3.png"
               alt="Dr. Adebanji Ayeni"
               className="absolute inset-0 w-full h-full object-cover rounded-2xl shadow-xl hover:scale-105 transition-transform duration-300"
+              onError={(e) => {
+                console.error("Error loading About image");
+                e.currentTarget.src = "/placeholder.svg"; // Fallback to placeholder
+              }}
             />
           </div>
         </div>
