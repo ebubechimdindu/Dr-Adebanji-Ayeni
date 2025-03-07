@@ -21,7 +21,7 @@ export function BlogSection() {
           }
         `);
       } catch (error) {
-        console.error('Error fetching blog posts:', error);
+        console.error('Error fetching articles:', error);
         return [];
       }
     },
@@ -31,8 +31,8 @@ export function BlogSection() {
     return (
       <section className="min-h-screen bg-[#F8F9FA] px-4 sm:px-6 lg:px-20 py-16 sm:py-20">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#132238] mb-8 sm:mb-12">Publications & Research</h2>
-          <p className="text-gray-600">Currently updating publication list...</p>
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#132238] mb-8 sm:mb-12">Articles</h2>
+          <p className="text-gray-600">Currently updating article list...</p>
         </div>
       </section>
     );
@@ -42,7 +42,7 @@ export function BlogSection() {
     return (
       <section className="min-h-screen bg-[#F8F9FA] px-4 sm:px-6 lg:px-20 py-16 sm:py-20">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#132238] mb-8 sm:mb-12">Publications & Research</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#132238] mb-8 sm:mb-12">Articles</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {[1, 2, 3].map((i) => (
               <div key={i} className="bg-white rounded-xl overflow-hidden shadow-lg">
@@ -64,17 +64,17 @@ export function BlogSection() {
     return (
       <section className="min-h-screen bg-[#F8F9FA] px-4 sm:px-6 lg:px-20 py-16 sm:py-20">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#132238] mb-8 sm:mb-12">Publications & Research</h2>
-          <p className="text-gray-600">Publications will be available soon.</p>
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#132238] mb-8 sm:mb-12">Articles</h2>
+          <p className="text-gray-600">Articles will be available soon.</p>
         </div>
       </section>
     );
   }
 
   return (
-    <section id="publications" className="min-h-screen bg-[#F8F9FA] px-4 sm:px-6 lg:px-20 py-16 sm:py-20">
+    <section id="articles" className="min-h-screen bg-[#F8F9FA] px-4 sm:px-6 lg:px-20 py-16 sm:py-20">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl font-bold text-[#132238] mb-8 sm:mb-12">Publications & Research</h2>
+        <h2 className="text-3xl sm:text-4xl font-bold text-[#132238] mb-8 sm:mb-12">Articles</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {posts.map((post) => (
             <article 
@@ -94,7 +94,7 @@ export function BlogSection() {
                 <h3 className="text-xl sm:text-2xl font-semibold mb-4 hover:text-[#A53DFF] transition-colors">{post.title}</h3>
                 <p className="text-[#697484] mb-4">{post.description}</p>
                 <Link 
-                  to={`/blog/${post.slug.current}`}
+                  to={`/articles/${post.slug.current}`}
                   className="text-[#A53DFF] font-semibold hover:text-[#8431CC] transition-colors group inline-flex items-center"
                 >
                   Read More

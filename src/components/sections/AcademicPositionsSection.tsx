@@ -3,8 +3,45 @@ import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { client } from "@/lib/sanity.client";
-import { placeholderAcademicPositions } from "@/lib/placeholderData";
+import { client } from "@/lib/sanity";
+
+const placeholderPositions = [
+  {
+    _id: "pos-1",
+    title: "Post Doctoral Fellow",
+    institution: "North-West University",
+    startDate: "2024-07-01",
+    endDate: null,
+    isCurrent: true,
+    researchAreas: [
+      "ICT pedagogy impact on student performance",
+      "Internal mobility and quality assurance",
+      "Entrepreneurial abilities and business survival"
+    ]
+  },
+  {
+    _id: "pos-2",
+    title: "Lecturer I",
+    institution: "Wigwe University",
+    startDate: "2024-08-01",
+    endDate: null,
+    isCurrent: true,
+    researchAreas: []
+  },
+  {
+    _id: "pos-3",
+    title: "Lecturer II",
+    institution: "Landmark University",
+    startDate: "2020-01-01",
+    endDate: "2024-06-30",
+    isCurrent: false,
+    researchAreas: [
+      "Employee Welfare Impact",
+      "Innovation Strategies in Skin Care",
+      "Video Games and Academic Performance"
+    ]
+  }
+];
 
 export function AcademicPositionsSection() {
   const [showAll, setShowAll] = useState(false);
@@ -13,6 +50,7 @@ export function AcademicPositionsSection() {
     queryKey: ['academic_positions'],
     queryFn: async () => {
       try {
+        console.log('Fetching academic positions...');
         const data = await client.fetch(`
           *[_type == "academicPosition"] | order(startDate desc) {
             _id,
@@ -24,13 +62,14 @@ export function AcademicPositionsSection() {
             researchAreas
           }
         `);
-        return (!data || data.length === 0) ? placeholderAcademicPositions : data;
+        console.log('Fetched data:', data);
+        return (!data || data.length === 0) ? placeholderPositions : data;
       } catch (error) {
         console.error('Error fetching academic positions:', error);
-        return placeholderAcademicPositions;
+        return placeholderPositions;
       }
     },
-    initialData: placeholderAcademicPositions,
+    initialData: placeholderPositions,
   });
 
   const displayedPositions = showAll ? positions : positions?.slice(0, 3);
@@ -45,8 +84,12 @@ export function AcademicPositionsSection() {
               <div key={i} className="bg-white p-6 rounded-xl shadow-lg">
                 <Skeleton className="h-6 w-48 mb-2" />
                 <Skeleton className="h-4 w-32 mb-1" />
-                <Skeleton className="h-4 w-40 mb-1" />
-                <Skeleton className="h-4 w-24" />
+                <Skeleton className="h-4 w-24 mb-4" />
+                <div className="space-y-2">
+                  {[1, 2, 3].map((j) => (
+                    <Skeleton key={j} className="h-4 w-full" />
+                  ))}
+                </div>
               </div>
             ))}
           </div>
@@ -62,24 +105,23 @@ export function AcademicPositionsSection() {
         <div className="space-y-8">
           {displayedPositions?.map((position) => (
             <div key={position._id} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
-              <h3 className="text-xl font-semibold text-[#A53DFF] mb-2">{position.title}</h3>
-              <p className="text-[#697484] mb-1">{position.institution}</p>
-              <p className="text-[#697484] mb-2">
-                {new Date(position.startDate).getFullYear()} - {position.isCurrent ? 'Present' : new Date(position.endDate).getFullYear()}
+              <h3 className="text-xl font-semibold text-[#7E69AB] mb-2">{position.title}</h3>
+              <p className="text-[#697484] font-medium mb-1">{position.institution}</p>
+              <p className="text-[#697484] mb-4">
+                {new Date(position.startDate).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })} - 
+                {position.isCurrent ? ' Present' : position.endDate ? 
+                  ` ${new Date(position.endDate).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}` : ''}
               </p>
               {position.researchAreas && position.researchAreas.length > 0 && (
-                <div className="mt-2">
-                  <p className="text-sm font-medium text-[#697484]">Research Areas:</p>
-                  <div className="flex flex-wrap gap-2 mt-1">
-                    {position.researchAreas.map((area: string, index: number) => (
-                      <span
-                        key={index}
-                        className="px-2 py-1 text-sm bg-[#F8F9FA] text-[#697484] rounded-full"
-                      >
-                        {area}
-                      </span>
-                    ))}
-                  </div>
+                <div className="flex flex-wrap gap-2">
+                  {position.researchAreas.map((area, index) => (
+                    <span
+                      key={index}
+                      className="px-3 py-1 bg-[#F8F9FA] text-[#697484] rounded-full text-sm"
+                    >
+                      {area}
+                    </span>
+                  ))}
                 </div>
               )}
             </div>

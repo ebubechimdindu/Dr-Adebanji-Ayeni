@@ -3,8 +3,39 @@ import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { client } from "@/lib/sanity.client";
-import { placeholderEducation } from "@/lib/placeholderData";
+import { client } from "@/lib/sanity";
+
+const placeholderEducation = [
+  {
+    _id: "phd-1",
+    degree: "Ph.D.",
+    institution: "Covenant University",
+    field: "Business Administration (Informal Entrepreneurship)",
+    startYear: 2014,
+    endYear: 2020,
+    dissertationTitle: "Motivation For Informal Entrepreneurs: Implications for Business Performance in Selected Electronics Markets in Southwest, Nigeria",
+    principalAdvisor: "Oluwole Iyiola",
+    coAdvisor: "Olaleke Ogunnaike"
+  },
+  {
+    _id: "ms-1",
+    degree: "M.S.",
+    institution: "Covenant University",
+    field: "Business Administration",
+    startYear: 2011,
+    endYear: 2013,
+    dissertationTitle: "Assessing the electronics market in an informal economy: a study of computer village, Ikeja, Lagos state"
+  },
+  {
+    _id: "bs-1",
+    degree: "B.S.",
+    institution: "Covenant University",
+    field: "Accounting",
+    startYear: 2005,
+    endYear: 2009,
+    dissertationTitle: "The Role Of Accounting Standards in the Banking Industry"
+  }
+];
 
 export function EducationSection() {
   const [showAll, setShowAll] = useState(false);
@@ -47,8 +78,8 @@ export function EducationSection() {
               <div key={i} className="bg-white p-6 rounded-xl shadow-lg">
                 <Skeleton className="h-6 w-48 mb-2" />
                 <Skeleton className="h-4 w-32 mb-1" />
-                <Skeleton className="h-4 w-24 mb-1" />
-                <Skeleton className="h-4 w-40" />
+                <Skeleton className="h-4 w-24 mb-4" />
+                <Skeleton className="h-4 w-full" />
               </div>
             ))}
           </div>

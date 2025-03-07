@@ -15,6 +15,7 @@ export default defineConfig({
     host: true,
   },
   define: {
-    'process.env.SANITY_TOKEN': JSON.stringify(process.env.SANITY_TOKEN)
+    'process.env.SANITY_TOKEN': JSON.stringify(process.env.SANITY_TOKEN),
+    'process.env.SANITY_PROJECT_ID': JSON.stringify('9uqjt3zf')
   }
 });
