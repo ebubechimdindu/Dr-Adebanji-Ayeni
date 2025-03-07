@@ -1,3 +1,4 @@
+
 import { Mail, Linkedin, ExternalLink, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
@@ -62,10 +63,9 @@ export function Hero() {
   };
 
   const images = [
-    "/lovable-uploads/63ec6cff-4fb4-434a-b383-b80f4b17651f.png",
-    "/lovable-uploads/d34350b6-7d57-48b1-9b2f-0d9c737fe9f3.png",
-    "/lovable-uploads/9afd0c1c-6e0d-4000-81d2-66eff9c60d01.png",
-    "/lovable-uploads/ec5cff29-6099-473c-bf8d-600089dcaee0.png"
+    "/lovable-uploads/026a489d-43ce-4287-996d-70c5d798c4cb.png",
+    "/lovable-uploads/daec17b8-0d5a-450b-9500-934d3671c7ed.png",
+    "/lovable-uploads/a90b9781-dbc9-4510-a218-87b971afc456.png"
   ];
 
   return (
@@ -158,6 +158,10 @@ export function Hero() {
                           alt={`Dr. Adebanji Ayeni - Image ${index + 1}`}
                           className="w-full h-full object-cover rounded-[30px] transition-all duration-500 hover:scale-105 shadow-2xl relative z-10"
                           loading="lazy"
+                          onError={(e) => {
+                            console.error(`Failed to load image: ${image}`);
+                            e.currentTarget.src = "/placeholder.svg";
+                          }}
                         />
                       </div>
                     </CarouselItem>

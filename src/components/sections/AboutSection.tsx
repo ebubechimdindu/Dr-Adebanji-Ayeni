@@ -1,3 +1,4 @@
+
 export function AboutSection() {
   return (
     <section id="about" className="min-h-screen px-4 sm:px-6 lg:px-20 py-16 sm:py-20">
@@ -17,9 +18,13 @@ export function AboutSection() {
           </div>
           <div className="relative h-[500px] w-full animate-scale-in">
             <img
-              src="/lovable-uploads/63ec6cff-4fb4-434a-b383-b80f4b17651f.png"
+              src="/lovable-uploads/026a489d-43ce-4287-996d-70c5d798c4cb.png"
               alt="Dr. Adebanji Ayeni"
               className="absolute inset-0 w-full h-full object-cover rounded-2xl shadow-xl hover:scale-105 transition-transform duration-300"
+              onError={(e) => {
+                console.error("Failed to load About section image");
+                e.currentTarget.src = "/placeholder.svg";
+              }}
             />
           </div>
         </div>
