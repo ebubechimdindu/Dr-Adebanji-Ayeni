@@ -64,7 +64,6 @@ export function Hero() {
 
   const images = [
     "/lovable-uploads/daec17b8-0d5a-450b-9500-934d3671c7ed.png", // Changed order to fix display issue
-    "/lovable-uploads/026a489d-43ce-4287-996d-70c5d798c4cb.png",
     "/lovable-uploads/a90b9781-dbc9-4510-a218-87b971afc456.png"
   ];
 
